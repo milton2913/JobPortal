@@ -17,4 +17,7 @@ class District extends Model
     public function profile(){
         return $this->hasOne('Models\Profile');
     }
+    public function address(){
+        return $this->hasMany('Models\Address');
+    }
 }

@@ -37,4 +37,7 @@ class Country extends Model
     public function education_institute(){
         return $this->hasMany('App\Models\Institute');
     }
+    public function address(){
+        return $this->hasMany('Models\Address');
+    }
 }

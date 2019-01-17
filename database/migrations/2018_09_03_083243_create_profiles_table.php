@@ -27,7 +27,7 @@ class CreateProfilesTable extends Migration
             $table->string('mother_name',100);
             $table->enum('identity_type',['National ID','Brith Certificate','Passport']);
             $table->string('identity_no',20);
-            $table->string('alternate_email',50);
+            $table->string('alternate_email',100);
             $table->string('alternate_mobile',15);
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

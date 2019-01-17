@@ -9,18 +9,18 @@ class Profile extends Model
    protected $table="profiles";
     protected $fillable = [
         'user_id',
+        'marital_status',
+        'religion',
+        'blood',
         'country_id',
-        'district_id',
         'father_name',
         'mother_name',
-        'nid',
-        'passport_no',
-        'birth_certificate',
-        'address',
-        'post_code',
-        'date_of_birth',
-        'gender',
-        'marital_status'
+        'alternate_email',
+        'alternate_mobile',
+        'identity_type',
+        'identity_no',
+        'user_id',
+        'date_of_birth'
     ];
 
     /**

@@ -14,4 +14,7 @@ class Division extends Model
     public function district(){
         return $this->hasMany('Models\District');
     }
+    public function address(){
+        return $this->hasMany('Models\Address');
+    }
 }

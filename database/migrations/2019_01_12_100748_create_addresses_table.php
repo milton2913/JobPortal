@@ -17,7 +17,7 @@ class CreateAddressesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('countries')->onDelete('cascade');
-            $table->boolean('in_bangladesh')->default(true);
+            $table->boolean('in_bangladesh')->default(1);
             $table->enum('address_type',['Present','Permanent']);
             $table->integer('country_id')->unsigned();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
@@ -30,7 +30,7 @@ class CreateAddressesTable extends Migration
             $table->integer('upazila_id')->unsigned()->nullable();
             $table->foreign('upazila_id')->references('id')->on('upazilas')->onDelete('set null');
 $table->string('post_code',10)->nullable();
-$table->string('others',10)->nullable();
+$table->text('others')->nullable();
 
             $table->timestamps();
         });
