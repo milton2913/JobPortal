@@ -24,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+         $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+         $loader->alias('Skill', 'App\Helpers\Skill');
     }
 }

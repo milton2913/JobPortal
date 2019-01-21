@@ -7,7 +7,7 @@ use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Socialite;
-use App\Helpers\UserStatus;
+use App\Helpers\Skill;
 class LoginController extends Controller
 {
     /*
@@ -31,7 +31,7 @@ class LoginController extends Controller
     protected $redirectTo = '/home';
     protected function redirectTo()
     {
-        $url = UserStatus::checkUserStatus();
+        $url = Skill::checkUserStatus();
         return $url;
     }
     /**

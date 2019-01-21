@@ -7,15 +7,14 @@ use App\Models\District;
 use App\Models\Division;
 use App\Models\Profile;
 use App\Models\Upazila;
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Helpers\UserStatus;
+use App\Helpers\Skill;
 use Carbon\Carbon;
 use App\Models\Address;
-use function Sodium\add;
-
+use DB;
 class ProfileController extends Controller
 {
     /**
@@ -24,6 +23,8 @@ class ProfileController extends Controller
      * @return Illuminate\View\View
      */
     public function create(){
+
+
         $user = Auth::user();
         $countries = Country::pluck('name','id');
         $districts = District::pluck('name','id');
@@ -39,23 +40,36 @@ class ProfileController extends Controller
      */
     public function store(ProfileRequest $request){
 
+        $prof = new Profile();
 
         $user= Auth::user();
         $user_id = $user->id;
         try{
-            $users = $request->only('name','email','mobile');
-            $profile = $request->only('gender', 'marital_status', 'religion', 'blood', 'father_name', 'mother_name', 'alternative_email', 'alternative_mobile','identity_type','identity_no');
+            $userData = $request->getUserData();
+            $profile = $request->only('gender', 'marital_status', 'religion', 'blood', 'father_name', 'mother_name', 'alternate_email', 'alternate_mobile','identity_type','identity_no');
             $profile['user_id'] =$user_id;
 
 
-            $profile['date_of_birth'] = UserStatus::dateOfBirth($request->input('date_of_birth'));
+            $profile['dob'] = $prof->getDateOfBirthAttribute($request->input('dob'));;
             $profile['country_id'] = $request->input('nationality');
-
-             UserStatus::profile($profile);
-
             //avatar add in user tables
-            $user->is_status = '2';
-            $user->save();
+
+            if ($request->hasFile('avatar')) {
+                $uploadPath = public_path('/assets/uploads/avatar');
+                $extension = $request->file('avatar')->getClientOriginalExtension();
+
+                $fileName = $this->makeIdentity($request->ip()).$this->makeVerificationCode($request->ip()).'.' . $extension;
+                $request->file('avatar')->move($uploadPath, $fileName);
+                $userData['avatar'] = $fileName;
+                if ($user->avatar != null) {
+                    $existingPath = 'assets/uploads/avatar/'.$user->avatar;
+                    if (file_exists( $existingPath)) {
+                        unlink(public_path($existingPath));
+                    }
+                }
+            }
+            $user->update($userData);
+            Skill::profile($profile);
             //contact information add in same method
 
             $address['in_bangladesh'] = $request->input('present_address');
@@ -66,8 +80,8 @@ class ProfileController extends Controller
             $address['upazila_id'] = $request->input('present_thana_id');
             $address['post_code'] = $request->input('present_area_code');
             $address['others'] = $request->input('presentAddress');
-            $address['user_id'] = 6;
-            UserStatus::address($address);
+            $address['user_id'] = $user_id;
+            Skill::address($address);
             if($request->has('same_address') ) {
                 $address['address_type'] = "Permanent";
             }else{
@@ -79,10 +93,10 @@ class ProfileController extends Controller
                 $address['upazila_id'] = $request->input('permanent_thana_id');
                 $address['post_code'] = $request->input('permanent_area_code');
                 $address['others'] = $request->input('permanentAddress');
-                $address['user_id'] = 6;
+                $address['user_id'] = $user_id;
             }
-            UserStatus::address($address);
-            $url = UserStatus::checkUserStatus();
+            Skill::address($address);
+            $url = Skill::checkUserStatus();
 
         }catch (Exception $exception) {
             return back()->withInput()
@@ -91,4 +105,56 @@ class ProfileController extends Controller
         return redirect($url);
 
     }
+
+
+    public function selectPresentCountry(Request $request)
+
+    {
+
+        if($request->ajax()){
+            $divisions = Division::where('country_id',19)->get();
+            $data = view('member.profiles.country',compact('divisions'))->render();
+            //return $data;
+           return response()->json(['options'=>$data]);
+        }
+
+    }
+
+    public function makeVerificationCode($ip){
+        $time = time();
+        $ipd=$this->removeDot($ip);
+        return $time.$ipd;
+    }
+    public function makeIdentity($ip){
+        $time = time();
+        $ipd=$this->removeDot($ip);
+        return $ipd.$time.$ipd;
+    }
+    public function removeDot($ip){
+        return str_replace(".","",$ip);
+    }
+
+    public function getStateList(Request $request)
+    {
+        $states = DB::table("divisions")
+            ->where("country_id",$request->country_id)
+            ->pluck("name","id");
+        return response()->json($states);
+    }
+
+    public function getCityList(Request $request)
+    {
+        $cities = DB::table("districts")
+            ->where("division_id",$request->state_id)
+            ->pluck("name","id");
+        return response()->json($cities);
+    }
+    public function getThanaList(Request $request)
+    {
+        $cities = DB::table("upazilas")
+            ->where("district_id",$request->district_id)
+            ->pluck("name","id");
+        return response()->json($cities);
+    }
+
 }

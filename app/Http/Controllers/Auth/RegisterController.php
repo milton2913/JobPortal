@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Helpers\UserStatus;
+use App\Helpers\Skill;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -33,7 +33,7 @@ class RegisterController extends Controller
 
     protected function redirectTo()
     {
-        $url = UserStatus::checkUserStatus();
+        $url = Skill::checkUserStatus();
         return $url;
     }
     /**

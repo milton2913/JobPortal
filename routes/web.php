@@ -16,11 +16,17 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('get-state-list','Member\ProfileController@getStateList');
+Route::get('get-city-list','Member\ProfileController@getCityList');
+Route::get('get-thana-list','Member\ProfileController@getThanaList');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('login/{social}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{social}/callback', 'Auth\LoginController@handleProviderCallback');
+
+Route::post('selectPresentCountry', 'Member\ProfileController@selectPresentCountry');
 
 //Route::resource('profile','Member\ProfileController');
 Route::group(

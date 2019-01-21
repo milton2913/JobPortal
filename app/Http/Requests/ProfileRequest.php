@@ -27,12 +27,11 @@ class ProfileRequest extends FormRequest
 
         //$id = $this->route('profile');
         $user_id = Auth::id();
-        $rules = [];
         $rules = [
             'name' => 'required|max:150',
             'email' => 'required|email|max:100|unique:users,email,'.$user_id,
             'mobile' => 'required|max:20|unique:users,mobile,'.$user_id,
-            'avatar' => 'mimes:jpeg,bmp,png',
+            'avatar' => 'max:10|mimes:jpeg,bmp,png,jpg',
             'gender' => 'required',
             'marital_status' => 'required',
             'religion' => 'required',
@@ -43,9 +42,13 @@ class ProfileRequest extends FormRequest
             'mother_name' => 'required|max:100|',
             'alternative_email' => 'max:100',
             'alternative_mobile' => 'max:15',
-            'identity_type' => 'required',
-            'identity_no' => 'required|max:20',
+            'identity_no' => 'max:20',
         ];
+        if ($this->request->get('identity_type')){
+            $rules= [
+                'identity_no' => 'required',
+            ];
+        }
         if ($this->request->get('present_address') == 1) {
            $rules= [
                'present_country_id' => 'required',
@@ -78,5 +81,22 @@ class ProfileRequest extends FormRequest
         }
 
 return $rules;
+    }
+public function getUserData(){
+        $user= Auth::user();
+        $data = $this->only(['name']);
+        $data['email']= $user->email?$user->email:$this->request->get('email');
+        $data['mobile']= $user->mobile?$user->mobile:$this->request->get('mobile');
+        $data['is_status']= '2';
+        return $data;
+    }
+
+    public function getProfileData(){
+        $user= Auth::user();
+        $data = $this->only(['name']);
+        $data['email']= $user->email?$user->email:$this->request->get('email');
+        $data['mobile']= $user->mobile?$user->mobile:$this->request->get('mobile');
+        $data['is_status']= '2';
+        return $data;
     }
 }

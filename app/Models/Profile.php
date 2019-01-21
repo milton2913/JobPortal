@@ -20,7 +20,7 @@ class Profile extends Model
         'identity_type',
         'identity_no',
         'user_id',
-        'date_of_birth'
+        'dob'
     ];
 
     /**
@@ -69,7 +69,8 @@ class Profile extends Model
      */
     public function setDateOfBirthAttribute($value)
     {
-        $this->attributes['date_of_birth'] = !empty($value) ? \DateTime::createFromFormat($this->getDateFormat(), $value) : null;
+
+        $this->attributes['dob'] = !empty($value) ? \DateTime::createFromFormat($this->getDateFormat(), $value) : null;
     }
 
     /**
@@ -78,9 +79,18 @@ class Profile extends Model
      * @param  string  $value
      * @return array
      */
+    public function getFromDateAttribute($value) {
+        return \Carbon\Carbon::parse($value)->format('d-m-Y');
+    }
     public function getDateOfBirthAttribute($value)
     {
-        return \DateTime::createFromFormat('j/n/Y', $value);
+        return \Carbon\Carbon::parse($value)->format('Y-m-d');
 
+
+        //return \DateTime::createFromFormat('j/n/Y', $value);
+        //$date  = \DateTime::createFromFormat('1991/12/31');
+        //$epoch = $date->getTimestamp();
+
+        //dd($date);
     }
 }

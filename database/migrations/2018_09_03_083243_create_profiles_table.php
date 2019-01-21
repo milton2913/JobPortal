@@ -25,10 +25,10 @@ class CreateProfilesTable extends Migration
             $table->date('date_of_birth');
             $table->string('father_name',100);
             $table->string('mother_name',100);
-            $table->enum('identity_type',['National ID','Brith Certificate','Passport']);
-            $table->string('identity_no',20);
-            $table->string('alternate_email',100);
-            $table->string('alternate_mobile',15);
+            $table->enum('identity_type',['National ID','Brith Certificate','Passport'])->nullable();
+            $table->string('identity_no',20)->nullable();
+            $table->string('alternate_email',100)->nullable();
+            $table->string('alternate_mobile',15)->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('set null');
