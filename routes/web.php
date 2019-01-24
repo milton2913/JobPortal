@@ -16,9 +16,21 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+//using for user address
 Route::get('get-state-list','Member\ProfileController@getStateList');
 Route::get('get-city-list','Member\ProfileController@getCityList');
 Route::get('get-thana-list','Member\ProfileController@getThanaList');
+
+
+Route::get('employer/dashboard','Employer\DashboardController@index')->name('employer.dashboard');
+Route::get('jobseeker/dashboard','Jobseeker\DashboardController@index')->name('jobseeker.dashboard');
+
+
+//admin section
+Route::resource('admin/organization-type','Admin\OrganizationTypeController');
+Route::resource('admin/industry-type','Admin\IndustryTypeController');
+Route::resource('admin/result-type','Admin\ResultTypeController');
+Route::resource('admin/education-level','Admin\EducationLevelController');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

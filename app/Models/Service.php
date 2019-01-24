@@ -12,4 +12,7 @@ class Service extends Model
     public function role(){
         return $this->hasOne('Models\Role');
     }
+    public function user(){
+        return $this->belongsToMany('App\Models\User');
+    }
 }

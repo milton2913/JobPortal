@@ -12,16 +12,22 @@ use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-use function PHPSTORM_META\elementType;
+
 
 class Skill{
 
+
+    //after profile create and after login check this function
     public static function checkUserStatus(){
         if (auth()->user()->is_status == 3) {
             return 'profile/create';
         }elseif (auth()->user()->is_status==2){
-            $url = self::checkCvInfo();
-            return 'profile info found! but others info not found!';
+            $service = self::checkService();
+            if ($service==false){
+                dd("Service Choice page");
+            }else{
+                self::dashboard($service);
+            }
         }elseif (auth()->user()->is_status==1){
             return 'profile done!';
         }elseif (auth()->user()->is_status==0){
@@ -32,16 +38,43 @@ class Skill{
 
     }
 
+    //check user service if found any service then return default service
+    public static function checkService(){
+        $service = User::findOrFail(Auth::id());
+        $service_user = $service->service()
+            ->wherePivot('user_id',Auth::id())
+            ->get(); // execute the query
+        if($service_user->count() >0 ){
+            $current_service = $service->service()
+                ->wherePivot('user_id',Auth::id())
+                ->wherePivot('is_active',1)
+                ->first();
+        }else{
+            $current_service = false;
+        }
+        return $current_service;
+    }
+
+    //redirect dashboard
+
+    public static function dashboard($service){
+        switch ($service->id){
+            case 1:
+                return 'employer/dashboard';
+            case 2:
+                return 'jobseeker/dashboard';
+            default:
+                return 'home';
+        }
+    }
+
+    //check jobs seeker CV status
     public static function checkCvInfo(){
 
     }
 
 
-
-    public static function dateOfBirth($dob){
-        //$result= Carbon::createFromFormat('Y-m-d', $dob);
-       return "1991-12-31";
-    }
+    //create or update user profile
     public static function profile($profile){
        $pro = Profile::where('user_id',Auth::id())->first();
        if ($pro){
@@ -50,6 +83,20 @@ class Skill{
            Profile::create($profile);
        }
     }
+
+//return user avatar
+    public static function getAvatar(){
+        $avatarUrl = Auth::user()->avatar;
+        $http   = 'http';
+        $pos = strpos($avatarUrl, $http);
+        if ($pos === false) {
+        $url = url('assets/uploads/avatar/'.auth()->user()->avatar);
+        } else {
+        $url = auth()->user()->avatar;
+        }
+        return $url;
+      }
+      //create or update user address
     public static function address($address){
         $addre = Address::where('user_id',Auth::id())->where('address_type',$address['address_type'])->first();
         if ($addre){
@@ -58,27 +105,14 @@ class Skill{
             Address::create($address);
         }
     }
-
-    public static function getAvatar(){
-        $avatarUrl = Auth::user()->avatar;
-        $http   = 'http';
-        $pos = strpos($avatarUrl, $http);
-
-  
-        if ($pos === false) {
-        $url = url('assets/uploads/avatar/'.auth()->user()->avatar);
-        } else {
-        $url = auth()->user()->avatar;
-        }
-        return $url;
-      }
-
+    //return present address
       public static function presentAddress(){
           $address = Address::where('user_id', Auth::id())
               ->where('address_type', "Present")
               ->first();
           return $address;
       }
+      // return permanent address
     public static function permanentAddress(){
         $address = Address::where('user_id', Auth::id())
             ->where('address_type', "Permanent")

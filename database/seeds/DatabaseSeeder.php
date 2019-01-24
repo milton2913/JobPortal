@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        $this->call(CountryTableSeeder::class);
+        /*$this->call(CountryTableSeeder::class);
         $this->call(DivisionTableSeeder::class);
         $this->call(DistrictTableSeeder::class);
         $this->call(UpazilaTableSeeder::class);
@@ -21,9 +21,11 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesTableSeeder::class);
         $this->call(CityTableSeeder::class);
         $this->call(ServiceTableSeeder::class);
-        $this->call(OrganizationTypeTableSeeder::class);
-
-        $this->call(IndustryTypeTableSeeder::class);
+        */
+        //$this->call(OrganizationTypeTableSeeder::class);
+        //$this->call(IndustryTypeTableSeeder::class);
+        $this->call(ResultTypeSeeder::class);
+/*
 
         $this->call(EducationLevelTableSeeder::class);
         $this->call(DegreeTableSeeder::class);
@@ -37,5 +39,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(InstituteTableSeeder::class);
         $user = factory(App\User::class,5)->create();
+*/
     }
 }
