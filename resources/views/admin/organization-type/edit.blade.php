@@ -2,14 +2,21 @@
 
 @section('content')
 
-
+    <div class="row">
+        <div class="col-md-12">
+            <div class="tile">
+                <div class="tile-body">
+                    <a href="{{ url('/admin/organization-type') }}" title="Back"><button class="btn btn-primary btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="row">
 
         <div class="col-md-12">
 
             <div class="tile">
-                <a href="{{ url('/admin/organization-type') }}" title="Back"><button class="btn btn-primary btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                 <h3 class="tile-title">Organization Type</h3>
                 <div class="tile-body">
 

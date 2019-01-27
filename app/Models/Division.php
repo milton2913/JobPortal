@@ -9,7 +9,7 @@ class Division extends Model
     protected $table ="divisions";
     protected $fillable =['name','bn_name','country_id'];
     public function country(){
-        return $this->hasMany('Models\Country');
+        return $this->belongsTo('Models\Country');
     }
     public function district(){
         return $this->hasMany('Models\District');

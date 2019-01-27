@@ -31,6 +31,10 @@ Route::resource('admin/organization-type','Admin\OrganizationTypeController');
 Route::resource('admin/industry-type','Admin\IndustryTypeController');
 Route::resource('admin/result-type','Admin\ResultTypeController');
 Route::resource('admin/education-level','Admin\EducationLevelController');
+Route::resource('admin/degree','Admin\DegreeController');
+Route::resource('admin/company-size','Admin\CompanySizeController');
+Route::resource('admin/contact-type','Admin\ContactTypeController');
+Route::resource('admin/currency','Admin\CurrencyController');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

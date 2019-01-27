@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Currency extends Model
 {
     protected $table="currencies";
-    protected $fillable = ['title','currency_code','currency_symbol','country_id'];
+    protected $fillable = ['title','currency_symbol','country_id','is_active'];
 
 
     public function country(){
-        return $this->belongsTo('Models\Country');
+        return $this->belongsTo('App\Models\Country');
     }
 }

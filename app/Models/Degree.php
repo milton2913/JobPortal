@@ -35,7 +35,8 @@ class Degree extends Model
                   'name',
                   'short_name',
                   'description',
-                  'is_active'
+                  'is_active',
+        'education_level_id'
               ];
 
     /**

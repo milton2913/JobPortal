@@ -1,13 +1,20 @@
+<div class="form-group col-md-4 {{ $errors->has('country_id') ? 'has-error' : ''}}">
+    <label class="control-label">Name</label>
+    {!! Form::select('country_id',$countries,null, ['class' => 'form-control select2', 'placeholder' => 'Select Country', 'required'=>true ]) !!}
+    {!! $errors->first('country_id', '<p class="help-block">:message</p>') !!}
+</div>
+
 <div class="form-group col-md-4 {{ $errors->has('title') ? 'has-error' : ''}}">
-    <label class="control-label">Organization Type Title</label>
-    {!! Form::text('title', null, ['class' => 'form-control', 'id'=>'title', 'required' => 'required','placeholder'=>'Organization Type Title']) !!}
+    <label class="control-label">Currency Title</label>
+    {!! Form::text('title', null, ['class' => 'form-control', 'id'=>'title', 'required' => 'required','placeholder'=>'Currency Title']) !!}
     {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
 </div>
-<div class="form-group col-md-4 {{ $errors->has('slug') ? 'has-error' : ''}}">
-    <label class="control-label">Organization Type  slug/url</label>
-    {!! Form::text('slug', null, ['class' => 'form-control',  'id'=>'slug', 'required' => 'required','placeholder'=>'Organization type slug']) !!}
-    {!! $errors->first('slug', '<p class="help-block">:message</p>') !!}
+<div class="form-group col-md-2 {{ $errors->has('currency_symbol') ? 'has-error' : ''}}">
+    <label class="control-label">Currency  symbol </label>
+    {!! Form::text('currency_symbol', null, ['class' => 'form-control',  'id'=>'slug', 'required' => 'required','placeholder'=>'Currency symbol']) !!}
+    {!! $errors->first('currency_symbol', '<p class="help-block">:message</p>') !!}
 </div>
+
 <div class="form-group  col-md-2 {{ $errors->has('is_active') ? 'has-error' : ''}}">
     <label class="control-label">Is Active</label>
     <div class="form-check">

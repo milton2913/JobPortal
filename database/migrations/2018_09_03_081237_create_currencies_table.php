@@ -16,7 +16,6 @@ class CreateCurrenciesTable extends Migration
         Schema::create('currencies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title',30);
-            $table->char('currency_code',3);
             $table->string('currency_symbol',4)->nullable()->default(null);
             $table->integer('country_id')->unsigned()->nullable();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('set null');

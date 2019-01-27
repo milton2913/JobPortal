@@ -17,6 +17,7 @@ class CreateSubjectsTable extends Migration
             $table->increments('id');
             $table->string('title',190)->unique();
             $table->string('slug',190)->unique()->nullable();
+            $table->enum('is_active',[0,1])->default(1);//0 is inactive, 1 is active with suggestion
             $table->timestamps();
         });
     }

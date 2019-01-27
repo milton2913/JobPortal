@@ -17,7 +17,7 @@ class CreateDegreeTable extends Migration
             $table->increments('id');
             $table->string('name',150)->unique();
             $table->integer('education_level_id')->unsigned();
-            $table->text('short_name')->nullable();
+            $table->string('short_name',100)->nullable();
             $table->text('description')->nullable();
             $table->enum('is_active',[0,1])->default(1);//0 is inactive, 1 is active with suggestion
             $table->foreign('education_level_id')->references('id')->on('education_levels')->onDelete('cascade');

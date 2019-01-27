@@ -17,6 +17,7 @@ class CreateContactTypesTable extends Migration
             $table->increments('id');
             $table->string('title',20);
             $table->string('icon_class',20)->nullable();//need a value seed
+            $table->enum('is_active',[0,1])->default(1);//0 is inactive, 1 is active with suggestion
             $table->timestamps();
         });
     }

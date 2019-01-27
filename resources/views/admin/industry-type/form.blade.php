@@ -25,7 +25,7 @@
     {!! $errors->first('is_active', '<p class="help-block">:message</p>') !!}
 </div>
 
-<div class="form-group col-md-1 align-self-end {{ $errors->has('itemCategory') ? 'has-error' : ''}}">
+<div class="form-group col-md-1 align-self-center {{ $errors->has('itemCategory') ? 'has-error' : ''}}">
     <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>{{$text}}</button>
 </div>
 

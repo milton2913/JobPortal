@@ -15,7 +15,8 @@ class CreateCompanySizesTable extends Migration
     {
         Schema::create('company_sizes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title',30);
+            $table->string('title',50);
+            $table->enum('is_active',[0,1])->default(1);//0 is inactive, 1 is active with suggestion
             $table->timestamps();
             $table->softDeletes();
         });

@@ -27,11 +27,11 @@
 
 <div class="form-group col-md-8 {{ $errors->has('description') ? 'has-error' : ''}}">
     <label class="control-label">Education Level Description</label>
-    {!! Form::textarea('description', null, ['class' => 'form-control', 'id'=>'title', 'required' => false]) !!}
+    {!! Form::textarea('description', null, ['class' => 'form-control textarea', 'id'=>'title', 'required' => false]) !!}
     {!! $errors->first('description', '<p class="help-block">:message</p>') !!}
 </div>
 
-<div class="form-group col-md-1 align-self-end">
+<div class="form-group col-md-1 align-self-center">
     <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>{{$text}}</button>
 </div>
 

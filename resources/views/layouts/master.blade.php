@@ -92,6 +92,10 @@
   <li><a class="app-menu__item" href="{{url('admin/result-type')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Result Types</span></a></li>
 
   <li><a class="app-menu__item" href="{{url('admin/education-level')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Education Level</span></a></li>
+  <li><a class="app-menu__item" href="{{url('admin/degree')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Degree</span></a></li>
+  <li><a class="app-menu__item" href="{{url('admin/company-size')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Company Size</span></a></li>
+  <li><a class="app-menu__item" href="{{url('admin/contact-type')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Contact Type</span></a></li>
+  <li><a class="app-menu__item" href="{{url('admin/currency')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Currency</span></a></li>
 
 
         <li><a class="app-menu__item " href="{{url('/admin')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>

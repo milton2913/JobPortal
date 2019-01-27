@@ -1,1 +1,5 @@
 .help-block{color: red; font-family:"Harlow Solid Italic"; font-size: 16px}
+.textarea {
+    resize: none;
+    height: 100px;
+}
