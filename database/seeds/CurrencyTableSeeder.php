@@ -16,7 +16,7 @@ class CurrencyTableSeeder extends Seeder
                 'title' => 'Bangladeshi Taka',
                 'currency_code' => 'BDT',
                 'currency_symbol' => '',
-                'country_id' => '18',
+                'country_id' => '19',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
             ],

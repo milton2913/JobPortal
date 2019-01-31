@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" href="{{url('assets/vali/css/style.css')}}">
+    @stack('style')
 </head>
 <body class="app sidebar-mini rtl">
 <!-- Navbar-->
@@ -85,17 +86,33 @@
     </div>
     <ul class="app-menu">
 
-        <li><a class="app-menu__item" href="{{url('admin/organization-type')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Organization Types</span></a></li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Admin</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+             <li><a class="treeview-item" href="{{url('admin/organization-type')}}"><i class="icon fa fa-circle-o"></i>Organization Types</a></li>
+             <li><a class="treeview-item" href="{{url('admin/industry-type')}}"><i class="icon fa fa-circle-o"></i>Industry Types</a></li>
+             <li><a class="treeview-item" href="{{url('admin/result-type')}}"><i class="icon fa fa-circle-o"></i>Result Types</a></li>
+             <li><a class="treeview-item" href="{{url('admin/education-level')}}"><i class="icon fa fa-circle-o"></i>Education Level</a></li>
+             <li><a class="treeview-item" href="{{url('admin/degree')}}"><i class="icon fa fa-circle-o"></i>Degree</a></li>
+             <li><a class="treeview-item" href="{{url('admin/company-size')}}"><i class="icon fa fa-circle-o"></i>Company Size</a></li>
+             <li><a class="treeview-item" href="{{url('admin/contact-type')}}"><i class="icon fa fa-circle-o"></i>Contact Type</a></li>
+             <li><a class="treeview-item" href="{{url('admin/currency')}}"><i class="icon fa fa-circle-o"></i>Currency</a></li>
+             <li><a class="treeview-item" href="{{url('admin/institute')}}"><i class="icon fa fa-circle-o"></i>Institute</a></li>
+             <li><a class="treeview-item" href="{{url('admin/skill')}}"><i class="icon fa fa-circle-o"></i>Skill</a></li>
+             <li><a class="treeview-item" href="{{url('admin/job-level')}}"><i class="icon fa fa-circle-o"></i>Job Level</a></li>
+             <li><a class="treeview-item" href="{{url('admin/subject')}}"><i class="icon fa fa-circle-o"></i>Subject</a></li>
+            </ul>
+        </li>
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Sobseeker</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+                <li><a class="treeview-item" href="{{url('jobseeker/education')}}"><i class="icon fa fa-circle-o"></i>Education</a></li>
 
-        <li><a class="app-menu__item active" href="{{url('admin/industry-type')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Industry Types</span></a></li>
+            </ul>
+        </li>
 
-  <li><a class="app-menu__item" href="{{url('admin/result-type')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Result Types</span></a></li>
 
-  <li><a class="app-menu__item" href="{{url('admin/education-level')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Education Level</span></a></li>
-  <li><a class="app-menu__item" href="{{url('admin/degree')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Degree</span></a></li>
-  <li><a class="app-menu__item" href="{{url('admin/company-size')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Company Size</span></a></li>
-  <li><a class="app-menu__item" href="{{url('admin/contact-type')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Contact Type</span></a></li>
-  <li><a class="app-menu__item" href="{{url('admin/currency')}}"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Currency</span></a></li>
+
+
+        
 
 
         <li><a class="app-menu__item " href="{{url('/admin')}}"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
@@ -107,7 +124,7 @@
                 <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Widgets</a></li>
             </ul>
         </li>
-        <li><a class="app-menu__item" href="charts.html"><i class="app-menu__icon fa fa-pie-chart"></i><span class="app-menu__label">Charts</span></a></li>
+        <li><a class="app-menu__item" href="charts.html"><i class="icon fa fa-circle-o"></i><span class="app-menu__label">Charts</span></a></li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Forms</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="form-components.html"><i class="icon fa fa-circle-o"></i> Form Components</a></li>

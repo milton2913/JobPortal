@@ -14,22 +14,13 @@
     </div>
 
     <div class="row">
-
         <div class="col-md-12">
-
             <div class="tile">
                 <h3 class="tile-title">Degree</h3>
                 <div class="tile-body">
-
-
                     {!! Form::open(['url' => '/admin/degree', 'class' => 'row']) !!}
-
                     @include ('admin.degree.form',['text'=>"Add"])
-
                     {!! Form::close() !!}
-
-
-
                 </div>
             </div>
         </div>

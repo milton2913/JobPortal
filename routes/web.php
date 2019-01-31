@@ -35,6 +35,16 @@ Route::resource('admin/degree','Admin\DegreeController');
 Route::resource('admin/company-size','Admin\CompanySizeController');
 Route::resource('admin/contact-type','Admin\ContactTypeController');
 Route::resource('admin/currency','Admin\CurrencyController');
+Route::resource('admin/institute','Admin\InstituteController');
+Route::resource('admin/skill','Admin\SkillController');
+Route::resource('admin/job-level','Admin\JobLevelController');
+Route::resource('admin/subject','Admin\SubjectController');
+
+
+//jobseeker section
+Route::resource('jobseeker/education','Jobseeker\EducationController');
+Route::post('select-ajax', ['as'=>'select-ajax','Member\\EducationsController@selectAjax']);
+Route::get('get-degree-list','Jobseeker\EducationController@getDegreeList');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
