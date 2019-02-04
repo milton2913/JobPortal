@@ -19,18 +19,18 @@ class CreateEducationsTable extends Migration
 
             $table->integer('degree_id')->unsigned();//result depend on education levels as a table
             $table->integer('subject_id')->unsigned();//Concentration/ Major/Group
-            $table->integer('institute_id')->unsigned();//Concentration/ Major/Group
+            $table->integer('institute_id')->unsigned();
             $table->enum('is_foreign_institute',[0,1])->default(0);
-            $table->string('achievement',250);
+            $table->string('achievement',250)->nullable();
             $table->integer('result_type_id')->unsigned();//create a table result_types
 
             $table->enum('is_hide',[0,1])->default(0);
-            $table->string('mark',2); //if result type is division or class
+            $table->string('mark',2)->nullable(); //if result type is division or class
 
-            $table->string('cgpa',5); //if result type is grade
-            $table->string('scale',2); //if result type is grade
+            $table->string('cgpa',5)->nullable(); //if result type is grade
+            $table->string('scale',2)->nullable(); //if result type is grade
 
-            $table->string('year',4);
+            $table->string('year',4)->nullable();
             $table->string('duration',15)->nullable();
 
 

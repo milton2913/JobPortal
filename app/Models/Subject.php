@@ -8,4 +8,9 @@ class Subject extends Model
 {
     protected $table ="subjects";
     protected $fillable = ['title','slug','is_active'];
+
+    public function education()
+    {
+        return $this->hasOne('App\Models\Education');
+    }
 }

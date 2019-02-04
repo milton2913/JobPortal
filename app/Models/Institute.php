@@ -12,5 +12,8 @@ class Institute extends Model
     public function country(){
         return $this->belongsTo('App\Models\Country');
     }
+    public function education(){
+        return $this->hasOne('App\Models\Education');
+    }
 
 }

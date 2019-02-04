@@ -15,30 +15,40 @@
     </div>
 
 
-<div class="form-group {{ $errors->has('major') ? 'has-error' : '' }}">
-    {!! Form::label('major','Major',['class' => 'control-label']) !!}
-            {!! Form::text('major',null, ['class' => 'form-control', 'required' => true, ]) !!}
-            {!! $errors->first('major', '<p class="help-block">:message</p>') !!}
-</div>
-
-<div class="form-group {{ $errors->has('institute') ? 'has-error' : '' }}">
-    {!! Form::label('institute','Institute',['class' => 'control-label']) !!}
-            {!! Form::text('institute',null, ['class' => 'form-control', 'required' => true, ]) !!}
-            {!! $errors->first('institute', '<p class="help-block">:message</p>') !!}
-</div>
+    <div class="form-group  {{ $errors->has('degree_id') ? 'has-error' : '' }}">
+        <label class="control-label">Institute</label>
+        {!! Form::select('institute_id',$institutes,null, ['id'=>'institute_id','class' => 'form-control', 'required' => true,'placeholder'=>"Select institute"]) !!}
+        {!! $errors->first('institute_id', '<p class="help-block">:message</p>') !!}
+    </div>
 
 
     <div class="form-group  {{ $errors->has('is_foreign_institute') ? 'has-error' : '' }}">
 
         <div class="checkbox">
             <label for='is_foreign_institute_1'>
-                {!! Form::checkbox('is_foreign_institute', '1',optional($educations)?optional($educations)->is_foreign_institute==1?true:null:null, ['class' => 'required' ]) !!}
+                {!! Form::checkbox('is_foreign_institute', '1',optional($educations)?optional($educations)->is_foreign_institute==1?true:null:null, ['class' => 'required','id'=>'is_foreign_institute','onclick'=>'isForeign(this)']) !!}
                 Is Foreign Institute
             </label>
         </div>
 
         {!! $errors->first('is_foreign_institute', '<p class="help-block">:message</p>') !!}
     </div>
+@php
+$country = isset($education->institute->country_id)?$education->institute->country_id:null;
+@endphp
+
+    <div id="country" style="display: none" class="form-group  {{ $errors->has('country_id') ? 'has-error' : '' }}">
+        <label class="control-label">Country</label>
+        {!! Form::select('country_id',$countries,$country, ['class' => 'form-control', 'required' => false,'placeholder'=>"Select country"]) !!}
+        {!! $errors->first('country_id', '<p class="help-block">:message</p>') !!}
+    </div>
+
+    <div class="form-group  {{ $errors->has('subject_id') ? 'has-error' : '' }}">
+        <label class="control-label">Major Subject</label>
+        {!! Form::select('subject_id',$subjects,null, ['id'=>'subject_id','class' => 'form-control', 'required' => true,'placeholder'=>"Select subject"]) !!}
+        {!! $errors->first('subject_id', '<p class="help-block">:message</p>') !!}
+    </div>
+
 <div class="form-group  {{ $errors->has('achievement') ? 'has-error' : '' }}">
     {!! Form::label('achievement','Achievement',['class' => 'control-label']) !!}
             {!! Form::text('achievement',null, ['class' => 'form-control', ]) !!}
@@ -47,6 +57,7 @@
             {!! $errors->first('achievement', '<p class="help-block">:message</p>') !!}
 </div>
 </div>
+
     <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
 
 <div class="form-group {{ $errors->has('result_type_id') ? 'has-error' : '' }}">
@@ -107,6 +118,7 @@
 </div>
 
 </div>
+
 <div class="form-group col-md-1 align-self-center">
     <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>{{$text}}</button>
 </div>
@@ -119,6 +131,7 @@
 .is_hide{display: none;}
 .is_grade{display: none;}
 .is_mark{display: none;}
+
     </style>
     @endpush
 @push('script')
@@ -130,8 +143,17 @@
                 tags: true,
                 tokenSeparators: [","],
             });
+            $('#subject_id').select2({
+                tags: true,
+                tokenSeparators: [","],
+            });
+            $('#institute_id').select2({
+                tags: true,
+                tokenSeparators: [","],
+            });
             $('#education_level_id').select2();
             $('#result_type_id').select2();
+            $('#country_id').select2();
 
         });
         //present country  on change call division
@@ -155,7 +177,7 @@
         });
         $('#result_type_id').change(function() {
             var result_type_id = $(this).val();
-            console.log(result_type_id);
+            //console.log(result_type_id);
             if (result_type_id==1||result_type_id==2||result_type_id==3||result_type_id==4) {
                 if (result_type_id==1||result_type_id==2||result_type_id==3){
                     $(".is_hide").show();
@@ -182,7 +204,7 @@
 
         $(document).ready(function () {
             var result_type_id = $('#result_type_id :selected').val();
-            console.log(result_type_id);
+            //console.log(result_type_id);
             if (result_type_id==1||result_type_id==2||result_type_id==3||result_type_id==4) {
                 if (result_type_id==1||result_type_id==2||result_type_id==3){
                     $(".is_hide").show();
@@ -194,7 +216,32 @@
                     $(".is_grade").show();
                 }
             }
+
+            if($('input[name="is_foreign_institute"]').is(':checked'))
+            {
+                country.style.display = "block";
+            }
         });
+
+        function isForeign(cb) {
+            if (cb.checked == true){
+                country.style.display = "block";
+            } else {
+                country.style.display = "none";
+            }
+        }
+        /*
+        function myFunction() {
+            var checkBox = document.getElementById("is_foreign_institute");
+            console.log(checkBox);
+            var country = document.getElementById("country");
+            if (checkBox.checked == true){
+                country.style.display = "block";
+            } else {
+                country.style.display = "none";
+            }
+        }
+        */
 
 /*
         $("select[name='result_type_id']").change(function(){
