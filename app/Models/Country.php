@@ -11,33 +11,36 @@ class Country extends Model
 
 
     public function organization(){
-        return $this->hasMany('Models\Organization');
+        return $this->hasMany('App\Models\Organization');
     }
     public function division(){
-        return $this->hasMany('Models\Division');
+        return $this->hasMany('App\Models\Division');
     }
     public function district(){
-        return $this->hasMany('Models\District');
+        return $this->hasMany('App\Models\District');
     }
     public function city(){
-        return $this->hasMany('Models\City');
+        return $this->hasMany('App\Models\City');
     }
     public function education_domain(){
-        return $this->hasMany('Models\EducationDomain');
+        return $this->hasMany('App\Models\EducationDomain');
     }
     public function currency(){
-        return $this->hasOne('Models\Currency');
+        return $this->hasOne('App\Models\Currency');
     }
     public function country_language(){
-        return $this->hasOne('Models\CountryLanguage');
+        return $this->hasOne('App\Models\CountryLanguage');
     }
     public function profile(){
-        return $this->hasOne('Models\Profile');
+        return $this->hasOne('App\Models\Profile');
     }
     public function education_institute(){
         return $this->hasMany('App\Models\Institute');
     }
     public function address(){
-        return $this->hasMany('Models\Address');
+        return $this->hasMany('App\Models\Address');
+    }
+    public function training(){
+        return $this->hasMany('App\Models\Training');
     }
 }

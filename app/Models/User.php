@@ -37,4 +37,11 @@ class User extends Authenticatable
     public function service(){
         return $this->belongsToMany('App\Models\Service');
     }
+//jobseeker section model
+    public function training(){
+        return $this->hasMany('App\Models\Education');
+    }
+    public function education(){
+        return $this->hasMany('App\Models\Training');
+    }
 }

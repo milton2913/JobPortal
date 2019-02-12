@@ -8,4 +8,7 @@ class Skill extends Model
 {
     protected $table ="skills";
     protected $fillable = ['title','slug','is_active'];
+    public function experience(){
+        return $this->belongsToMany('App\Models\Experience');
+    }
 }

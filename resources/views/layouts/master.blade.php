@@ -10,9 +10,8 @@
     <link rel="stylesheet" type="text/css" href="{{url('assets/vali/css/main.css')}}">
     <!-- Font-icon css-->
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link rel="stylesheet" type="text/css" href="{{url('assets/vali/css/style.css')}}">
     @stack('style')
+    <link rel="stylesheet" type="text/css" href="{{url('assets/vali/css/style.css')}}">
 </head>
 <body class="app sidebar-mini rtl">
 <!-- Navbar-->
@@ -70,7 +69,20 @@
             <ul class="dropdown-menu settings-menu dropdown-menu-right">
                 <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
                 <li><a class="dropdown-item" href="page-user.html"><i class="fa fa-user fa-lg"></i> Profile</a></li>
-                <li><a class="dropdown-item" href="page-login.html"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
+                <li>
+
+
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        <i class="fa fa-sign-out fa-lg"></i>      {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+
+                </li>
             </ul>
         </li>
     </ul>
@@ -105,6 +117,8 @@
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Sobseeker</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
                 <li><a class="treeview-item" href="{{url('jobseeker/education')}}"><i class="icon fa fa-circle-o"></i>Education</a></li>
+                <li><a class="treeview-item" href="{{url('jobseeker/training')}}"><i class="icon fa fa-circle-o"></i>Training</a></li>
+                <li><a class="treeview-item" href="{{url('jobseeker/experience')}}"><i class="icon fa fa-circle-o"></i>Experience</a></li>
 
             </ul>
         </li>

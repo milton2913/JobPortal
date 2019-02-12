@@ -19,9 +19,9 @@ class CreateExperiencesTable extends Migration
             $table->string('company_business',250);
             $table->string('designation',100);
             $table->string('department',100)->nullable();
-            $table->enum('current',[0,1])->default(0);
-            $table->date('start_date');
-            $table->date('end_date');
+            $table->enum('is_current',[0,1])->default(0);
+            $table->string('start_date');
+            $table->string('end_date')->nullable();
             $table->text('location')->nullable();
             $table->text('responsibility')->nullable();
             $table->integer('user_id')->unsigned();

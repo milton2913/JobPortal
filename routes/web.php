@@ -42,9 +42,14 @@ Route::resource('admin/subject','Admin\SubjectController');
 
 
 //jobseeker section
-Route::resource('jobseeker/education','Jobseeker\EducationController');
+
+
+Route::resource('jobseeker/education','Jobseeker\EducationController');//education
 Route::post('select-ajax', ['as'=>'select-ajax','Member\\EducationsController@selectAjax']);
 Route::get('get-degree-list','Jobseeker\EducationController@getDegreeList');
+
+Route::resource('jobseeker/training','Jobseeker\TrainingController');//training
+Route::resource('jobseeker/experience','Jobseeker\ExperienceController');//experience
 
 
 Route::get('/home', 'HomeController@index')->name('home');

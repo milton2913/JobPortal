@@ -17,11 +17,6 @@ use Auth;
 use DB;
 class EducationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     protected $user_id;
     public function __construct()
@@ -32,6 +27,11 @@ class EducationController extends Controller
             return $next($request);
         });
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
     public function index()
     {

@@ -8,6 +8,7 @@
 
 namespace App\Helpers;
 use App\Models\Address;
+use App\Models\Experience;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -118,5 +119,54 @@ class Skill{
             ->where('address_type', "Permanent")
             ->first();
         return $address;
+    }
+
+    //return experience year month and day
+    public static function experienceCalculator($start_date,$end_date,$is_current){
+        $start_date = strtotime($start_date);
+        if ($is_current==1 && $end_date=="Continue"){
+            $end_date = strtotime(date('Y-m-d'));
+        }else{
+            $end_date = strtotime($end_date);
+        }
+        $months = 0;
+        $years = 0;
+        while (strtotime('+1 MONTH', $start_date) < $end_date) {
+            $months++;
+            $start_date = strtotime('+1 MONTH', $start_date);
+            if($months>11){
+                $years++;
+                $months=0;
+            }
+        }
+        return $years." year, ". $months. ' month, '. ($end_date - $start_date) / (60*60*24). ' days';
+    }
+
+    public static function totalExperience($id){
+
+        $experiences = Experience::where('user_id',$id)->get();
+        $months = 0;
+        $years = 0;
+        $days = 0;
+        foreach ($experiences as $experience){
+            $start_date = strtotime($experience->start_date);
+            if ($experience->is_current==1 && $experience->end_date=="Continue"){
+                $end_date = strtotime(date('Y-m-d'))+$days*60*60*24;
+            }else{
+                $end_date = strtotime($experience->end_date)+$days*60*60*24;
+            }
+
+            while (strtotime('+1 MONTH', $start_date) < $end_date) {
+                $months++;
+                $start_date = strtotime('+1 MONTH', $start_date);
+                if($months>11){
+                    $years++;
+                    $months=0;
+                }
+            }
+            $days = ($end_date - $start_date) / (60*60*24);
+
+        }
+        return $years." year, ". $months. ' month, '. $days . ' days';
     }
 }

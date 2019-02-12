@@ -19,7 +19,7 @@ class CreateTrainingsTable extends Migration
             $table->text('topic')->nullable();
             $table->string('year',4);
             $table->string('institute',250);
-            $table->string('duration',10);
+            $table->string('duration',100);
             $table->text('location')->nullable();
             $table->integer('country_id')->unsigned();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
