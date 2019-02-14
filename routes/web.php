@@ -39,7 +39,7 @@ Route::resource('admin/institute','Admin\InstituteController');
 Route::resource('admin/skill','Admin\SkillController');
 Route::resource('admin/job-level','Admin\JobLevelController');
 Route::resource('admin/subject','Admin\SubjectController');
-
+Route::resource('admin/expert-status','Admin\ExpertStatusController');
 
 //jobseeker section
 
@@ -50,6 +50,7 @@ Route::get('get-degree-list','Jobseeker\EducationController@getDegreeList');
 
 Route::resource('jobseeker/training','Jobseeker\TrainingController');//training
 Route::resource('jobseeker/experience','Jobseeker\ExperienceController');//experience
+Route::resource('jobseeker/certification','Jobseeker\CertificationController');//certifications
 
 
 Route::get('/home', 'HomeController@index')->name('home');

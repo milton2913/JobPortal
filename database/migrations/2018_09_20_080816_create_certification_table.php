@@ -18,8 +18,8 @@ class CreateCertificationTable extends Migration
             $table->string('title',250);
             $table->text('location')->nullable();
             $table->string('institute',150);
-            $table->date('start_period');
-            $table->date('end_period');
+            $table->string('start_date',15);
+            $table->string('end_date',15);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
