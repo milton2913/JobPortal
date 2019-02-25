@@ -13,4 +13,8 @@ class ExpertStatus extends Model
     public function skill(){
         return $this->belongsToMany('App\Models\Skill');
     }
+
+    public function expertise(){
+        return $this->hasMany('App\Models\Expertise');
+    }
 }

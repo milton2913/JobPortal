@@ -113,6 +113,7 @@
              <li><a class="treeview-item" href="{{url('admin/job-level')}}"><i class="icon fa fa-circle-o"></i>Job Level</a></li>
              <li><a class="treeview-item" href="{{url('admin/subject')}}"><i class="icon fa fa-circle-o"></i>Subject</a></li>
              <li><a class="treeview-item" href="{{url('admin/expert-status')}}"><i class="icon fa fa-circle-o"></i>Expert Status</a></li>
+             <li><a class="treeview-item" href="{{url('admin/reference-type')}}"><i class="icon fa fa-circle-o"></i>Reference Type</a></li>
             </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Sobseeker</span><i class="treeview-indicator fa fa-angle-right"></i></a>
@@ -121,7 +122,9 @@
                 <li><a class="treeview-item" href="{{url('jobseeker/training')}}"><i class="icon fa fa-circle-o"></i>Training</a></li>
                 <li><a class="treeview-item" href="{{url('jobseeker/experience')}}"><i class="icon fa fa-circle-o"></i>Experience</a></li>
                 <li><a class="treeview-item" href="{{url('jobseeker/certification')}}"><i class="icon fa fa-circle-o"></i>Certification</a></li>
-
+                <li><a class="treeview-item" href="{{url('jobseeker/reference')}}"><i class="icon fa fa-circle-o"></i>Reference</a></li>
+                <li><a class="treeview-item" href="{{url('jobseeker/expertise')}}"><i class="icon fa fa-circle-o"></i>Expertise</a></li>
+                <li><a class="treeview-item" href="{{url('jobseeker/cv-objective')}}"><i class="icon fa fa-circle-o"></i>Carrier Objective</a></li>
 
             </ul>
         </li>

@@ -33,7 +33,9 @@ class User extends Authenticatable
     public function address(){
         return $this->hasMany('App\Models\Address');
     }
-
+    public function cvObjective(){
+        return $this->hasMany('App\Models\CvObjective');
+    }
     public function service(){
         return $this->belongsToMany('App\Models\Service');
     }
@@ -43,5 +45,12 @@ class User extends Authenticatable
     }
     public function education(){
         return $this->hasMany('App\Models\Training');
+    }
+
+    public function reference(){
+        return $this->hasMany('Models\Reference');
+    }
+    public function expertise(){
+        return $this->hasMany('App\Models\Expertise');
     }
 }

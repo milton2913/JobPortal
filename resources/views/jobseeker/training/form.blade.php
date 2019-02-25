@@ -1,6 +1,6 @@
 <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
     <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
-        {!! Form::label('title','Training Title',['class' => 'control-label']) !!}
+        {!! Form::label('title','reference Title',['class' => 'control-label']) !!}
         {!! Form::text('title',null, ['class' => 'form-control ', 'required'=>true ]) !!}
         {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
     </div>
@@ -51,7 +51,7 @@ $years[$year+$i]=$year+$i;
 @endphp
 <div class="col col-lg-2 col-md-2 col-sm-12 col-12">
     <div class="form-group {{ $errors->has('year') ? 'has-error' : ''}}">
-        <label class="control-label">Training Year </label>
+        <label class="control-label">reference Year </label>
         {!! Form::select('year',$years,null, ['class' => 'form-control', 'id'=>'country_id','required' => true,'placeholder'=>"Select year"]) !!}
         {!! $errors->first('year', '<p class="help-block">:message</p>') !!}
     </div>
