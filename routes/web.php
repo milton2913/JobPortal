@@ -23,7 +23,7 @@ Route::get('get-thana-list','Member\ProfileController@getThanaList');
 
 
 Route::get('employer/dashboard','Employer\DashboardController@index')->name('employer.dashboard');
-Route::get('jobseeker/dashboard','Jobseeker\DashboardController@index')->name('jobseeker.dashboard');
+Route::get('jobseeker/dashboard','Jobseeker\JobseekerController@index')->name('jobseeker.dashboard');
 
 
 //admin section
@@ -56,6 +56,7 @@ Route::resource('jobseeker/reference','Jobseeker\ReferenceController');//Referen
 Route::resource('jobseeker/expertise','Jobseeker\ExpertiseController');//expertise
 Route::resource('jobseeker/cv-objective','Jobseeker\CvObjectiveController');//cv objective
 Route::get('cv-objective-status','Jobseeker\CvObjectiveController@cvObjectiveStatus');
+Route::get('jobseeker/resume','Jobseeker\JobseekerController@resume');
 
 
 

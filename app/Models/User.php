@@ -41,14 +41,19 @@ class User extends Authenticatable
     }
 //jobseeker section model
     public function training(){
-        return $this->hasMany('App\Models\Education');
-    }
-    public function education(){
         return $this->hasMany('App\Models\Training');
     }
-
+    public function education(){
+        return $this->hasMany('App\Models\Education');
+    }
+    public function experience(){
+        return $this->hasMany('App\Models\Experience');
+    }
+    public function certification(){
+        return $this->hasMany('App\Models\Certification');
+    }
     public function reference(){
-        return $this->hasMany('Models\Reference');
+        return $this->hasMany('App\Models\Reference');
     }
     public function expertise(){
         return $this->hasMany('App\Models\Expertise');

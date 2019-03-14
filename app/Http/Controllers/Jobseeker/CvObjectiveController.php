@@ -135,28 +135,7 @@ class CvObjectiveController extends Controller
             return "not found!";
         }
 
-      /*  $states = DB::table("degrees")
-            ->where("education_level_id",$request->education_level_id)
-            ->pluck("name","id");
-        return response()->json($states);
 
-        if($request->ajax()){
-            $data = CvObjective::where('user_id',$this->user_id)->find($request->is_active);
-            if (!is_null($data)) {
-                $userObjective=CvObjective::where('user_id',$this->user_id)->find($request->is_active);
-                foreach ($userObjective as $all){
-                    $all->is_active = 0;
-                    $all->save();
-                }
-                $data->is_active = 1;
-                $data->save();
-                return "Active";
-            }else{
-                return "not found!";
-            }
-        }
-
-*/
     }
 
    /* public function cvObjectiveStatus(Request $request){

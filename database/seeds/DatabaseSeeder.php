@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CurrencyTableSeeder::class);
 
         $this->call(InstituteTableSeeder::class);
-        $user = factory(App\User::class,5)->create();
+        $user = factory(App\Models\User::class,5)->create();
 */
     }
 }

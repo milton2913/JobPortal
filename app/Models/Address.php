@@ -15,15 +15,15 @@ class Address extends Model
     }
 
     public function country(){
-        return $this->belongsTo('Models\Country');
+        return $this->belongsTo('App\Models\Country');
     }
     public function division(){
-        return $this->belongsTo('Models\Division');
+        return $this->belongsTo('App\Models\Division');
     }
     public function district(){
-        return $this->belongsTo('Models\District');
+        return $this->belongsTo('App\Models\District');
     }
     public function upazila(){
-        return $this->belongsTo('Models\Upazila');
+        return $this->belongsTo('App\Models\Upazila');
     }
 }
