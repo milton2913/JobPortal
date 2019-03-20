@@ -17,12 +17,14 @@ class JobseekerController extends Controller
             return $next($request);
         });
     }
-    public function resume(){
+    public function profile(){
         $resume = User::with('profile','address','training','education','reference','expertise','experience','certification','address')->find($this->user_id);
 
         $cvObjective = CvObjective::where('user_id',$this->user_id)->where('is_active','1')->first();
+        return view('jobseeker.resume.profile',compact('resume','cvObjective'));
+    }
 
-
-        return view('jobseeker.resume',compact('resume','cvObjective'));
+    public function resume($id){
+        return view('jobseeker.resume.template'.$id);
     }
 }

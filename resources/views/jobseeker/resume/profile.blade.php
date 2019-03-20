@@ -5,8 +5,12 @@
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
-                <div class="tile-body">
-                    <div class="row">
+                <div class="content-footer">
+                    <button id="btn-export" onclick="exportHTML();">Export to word
+                        doc</button>
+                </div>
+                <div class="tile-body ">
+                    <div class="row source-html-outer">
                         <div class="col col-md-3 pt-100">
                             <div class="card">
                                 <div class="text-center pt-4 pb-5 pl-3 pr-3 bg-primary text-white">
@@ -39,17 +43,30 @@
                                         <a class="nav-link" href="#"><i class="fas fa-user-check"></i>  Profile Viewed <span class="badge badge-primary badge-pill">0</span></a>
                                     </li>
                                 </ul>
+                                <ul>
+                                    <li>
+                                        <a href="#" onclick="convert_word()" title="Word Format">
+                                            word
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="convert_pdf();" title="PDF Format">
+                                          pdf
+                                        </a>
+                                    </li>
+                                </ul>
+
                             </div>
                         </div>
 
-                        <div class="col col-md-9 pt-100">
+                        <div class="col col-md-9 pt-100" id="source-html">
                             <div class="card p-3 ">
                                 <div class="card-body mb-1">
                                     <div class="d-flex justify-content-between alert alert-secondary">
                                         <h6 class="font-weight-bold m-0">
                                             Career Objective
                                         </h6>
-                                        <a href=""><i class="fa fa-edit"></i></a>
+                                        <a href="{{url('jobseeker/cv-objective')}}"><i class="fa fa-edit"></i></a>
                                     </div>
 
                                     @if($cvObjective)
@@ -64,7 +81,7 @@
                                         <h6 class="font-weight-bold m-0">
                                             Personal Information
                                         </h6>
-                                        <a href=""><i class="fa fa-edit"></i></a>
+                                        <a href="{{url('profile/create')}}"><i class="fa fa-edit"></i></a>
                                     </div>
 
                                     <div class="table-responsive">
@@ -114,7 +131,7 @@
                                         <h6 class="font-weight-bold m-0">
                                             Educational Qualification
                                         </h6>
-                                        <a href=""><i class="fa fa-edit"></i></a>
+                                        <a href="{{url('jobseeker/education')}}"><i class="fa fa-edit"></i></a>
                                     </div>
                                     <div class="table-responsive">
                                         <table  class="table table-bordered table-hover">
@@ -162,7 +179,7 @@
                                         <h6 class="font-weight-bold m-0">
                                             Expertise
                                         </h6>
-                                        <a href=""><i class="fa fa-edit"></i></a>
+                                        <a href="{{url('jobseeker/expertise')}}"><i class="fa fa-edit"></i></a>
                                     </div>
 
                                     <div class="table-responsive">
@@ -185,7 +202,7 @@
                                         <h6 class="font-weight-bold m-0">
                                             Employment History
                                         </h6>
-                                        <a href=""><i class="fa fa-edit"></i></a>
+                                        <a href="{{url('jobseeker/experience')}}"><i class="fa fa-edit"></i></a>
                                     </div>
                                     <div class="table-responsive">
                                         <table  class="table table-bordered table-hover">
@@ -226,7 +243,7 @@
                                         <h6 class="font-weight-bold m-0">
                                             Training
                                         </h6>
-                                        <a href=""><i class="fa fa-edit"></i></a>
+                                        <a href="{{url('jobseeker/training')}}"><i class="fa fa-edit"></i></a>
                                     </div>
                                     <div class="table-responsive">
                                         <table  class="table table-bordered table-hover">
@@ -263,7 +280,7 @@
                                         <h6 class="font-weight-bold m-0">
                                             Certification
                                         </h6>
-                                        <a href=""><i class="fa fa-edit"></i></a>
+                                        <a href="{{url('jobseeker/certification')}}"><i class="fa fa-edit"></i></a>
                                     </div>
                                     <div class="table-responsive">
                                         <table  class="table table-bordered table-hover">
@@ -295,7 +312,7 @@
                                         <h6 class="font-weight-bold m-0">
                                             Address
                                         </h6>
-                                        <a href=""><i class="fa fa-edit"></i></a>
+                                        <a href="{{url('profile/create')}}"><i class="fa fa-edit"></i></a>
                                     </div>
                                     <div class="table-responsive">
                                         <table  class="table">
@@ -337,7 +354,7 @@
                                         <h6 class="font-weight-bold m-0">
                                             Reference
                                         </h6>
-                                        <a href=""><i class="fa fa-edit"></i></a>
+                                        <a href="{{url('jobseeker/reference')}}"><i class="fa fa-edit"></i></a>
                                     </div>
                                     <div class="table-responsive">
                                         <table  class="table">
@@ -397,3 +414,25 @@
             .card-body{padding: 0px}
         </style>
         @endpush
+
+@push('script')
+    <script type="text/javascript">
+
+        function exportHTML(){
+            var header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' "+
+                "xmlns:w='urn:schemas-microsoft-com:office:word' "+
+                "xmlns='http://www.w3.org/TR/REC-html40'>"+
+                "<head><meta charset='utf-8'><title>Export HTML to Word Document with JavaScript</title></head><body>";
+            var footer = "</body></html>";
+            var sourceHTML = header+document.getElementById("source-html").innerHTML+footer;
+
+            var source = 'data:application/vnd.ms-word;charset=utf-8,' + encodeURIComponent(sourceHTML);
+            var fileDownload = document.createElement("a");
+            document.body.appendChild(fileDownload);
+            fileDownload.href = source;
+            fileDownload.download = 'document.doc';
+            fileDownload.click();
+            document.body.removeChild(fileDownload);
+        }
+    </script>
+    @endpush

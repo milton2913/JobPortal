@@ -56,7 +56,10 @@ Route::resource('jobseeker/reference','Jobseeker\ReferenceController');//Referen
 Route::resource('jobseeker/expertise','Jobseeker\ExpertiseController');//expertise
 Route::resource('jobseeker/cv-objective','Jobseeker\CvObjectiveController');//cv objective
 Route::get('cv-objective-status','Jobseeker\CvObjectiveController@cvObjectiveStatus');
-Route::get('jobseeker/resume','Jobseeker\JobseekerController@resume');
+Route::get('jobseeker/profile','Jobseeker\JobseekerController@profile');
+
+
+Route::get('jobseeker/resume/{id}','Jobseeker\JobseekerController@resume');
 
 
 

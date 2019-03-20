@@ -80,11 +80,11 @@ class Profile extends Model
      * @return array
      */
     public function getFromDateAttribute($value) {
-        return \Carbon\Carbon::parse($value)->format('d-m-Y');
+        return \Carbon\Carbon::parse($value)->format('b-m-Y');
     }
     public function getDateOfBirthAttribute($value)
     {
-        return \Carbon\Carbon::parse($value)->format('Y-m-d');
+        return \Carbon\Carbon::parse($value)->format('Y-m-b');
 
 
         //return \DateTime::createFromFormat('j/n/Y', $value);

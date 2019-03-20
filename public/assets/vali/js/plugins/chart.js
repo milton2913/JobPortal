@@ -1264,7 +1264,7 @@
 			ctx.strokeStyle = this.strokeColor;
 			ctx.lineWidth = this.strokeWidth;
 
-			// It'd be nice to keep this class totally generic to any rectangle
+			// It'b be nice to keep this class totally generic to any rectangle
 			// and simply specify which border to miss out.
 			ctx.moveTo(leftX, this.base);
 			ctx.lineTo(leftX, top);

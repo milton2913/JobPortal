@@ -66,7 +66,6 @@ class EducationController extends Controller
     {
 
         $data = $request->getData();
-        //dd($data);
         Education::create($data);
         return redirect('jobseeker/education');
     }

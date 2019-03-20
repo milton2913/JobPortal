@@ -44,5 +44,8 @@ class Education extends Model
     {
         return $this->belongsTo('App\Models\ResultType');
     }
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
 
 }

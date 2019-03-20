@@ -81,16 +81,25 @@ class EducationRequest extends FormRequest
         }
         //check institute already create or new create and return institute id
         if ($this->input('is_foreign_institute')){
-            if(is_numeric($this->input('institute_id')) && Institute::find($this->input('institute_id'))){
-                $data['institute_id'] = $this->input('institute_id');
+            $institute = Institute::find($this->input('institute_id'));
+            if(is_numeric($this->input('institute_id')) && $institute){
+                if (Institute::where('id',$this->input('institute_id'))->where('country_id',$this->input('country_id'))->first()){
+                    $data['institute_id'] = $this->input('institute_id');
+                }else{
+                    $data['institute_id'] = $this->checkInstitute($institute->name,$this->input('country_id')?$this->input('country_id'):19);
+                }
             }else{
+
                 $data['institute_id'] = $this->checkInstitute($this->input('institute_id'),$this->input('country_id')?$this->input('country_id'):19);
             }
             $data['is_foreign_institute'] = '1';
         }else{
-            $data['institute_id'] = $this->input('institute_id');
+            $data['institute_id'] = $this->checkInstitute($this->input('institute_id'),$this->input('country_id')?$this->input('country_id'):19);
             $data['is_foreign_institute'] = '0';
         }
+
+
+
 
         //check major subject already create or new create and return subject id
         if(is_numeric($this->input('subject_id')) && Subject::find($this->input('subject_id'))){
@@ -138,7 +147,7 @@ $data['user_id']=Auth::id();
     }
 
     public function checkSubject($name){
-        $subject= Subject::where('name', '=' , $name)->first();
+        $subject= Subject::where('title', '=' , $name)->first();
         if($subject==null){
             $data = [
                 'title'=>$name,

@@ -448,7 +448,7 @@ Country::create( [
     "num_code" => "384",
     "code_2" => "CI",
     "code_3" => "CIV",
-    "name" => "Côte d'Ivoire",
+    "name" => "Côte b'Ivoire",
     "nationality" => "Ivorian",
 ]);
 

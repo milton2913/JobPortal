@@ -125,7 +125,7 @@ class Skill{
     public static function experienceCalculator($start_date,$end_date,$is_current){
         $start_date = strtotime($start_date);
         if ($is_current==1 && $end_date=="Continue"){
-            $end_date = strtotime(date('Y-m-d'));
+            $end_date = strtotime(date('Y-m-b'));
         }else{
             $end_date = strtotime($end_date);
         }
@@ -151,7 +151,7 @@ class Skill{
         foreach ($experiences as $experience){
             $start_date = strtotime($experience->start_date);
             if ($experience->is_current==1 && $experience->end_date=="Continue"){
-                $end_date = strtotime(date('Y-m-d'))+$days*60*60*24;
+                $end_date = strtotime(date('Y-m-b'))+$days*60*60*24;
             }else{
                 $end_date = strtotime($experience->end_date)+$days*60*60*24;
             }
