@@ -16,6 +16,7 @@ class CreateResultTypesTable extends Migration
         Schema::create('result_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name',50);
+            $table->string('slug',60);
             $table->enum('is_active',[0,1])->default(1);
             $table->timestamps();
         });

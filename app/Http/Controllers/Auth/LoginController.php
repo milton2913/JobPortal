@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/profile/create';
     protected function redirectTo()
     {
         $url = Skill::checkUserStatus();
@@ -61,16 +61,16 @@ class LoginController extends Controller
 
 
         //check if user exists and log user in
-        $user = User::where('email',$userInfo->user['email'])->first();
+        $user = User::where('email',$userInfo->email)->first();
         if ($user){
             if (Auth::loginUsingId($user->id)){
-                return redirect()->route('home');
+                return redirect()->route('profiles.profile.create');
             }
         }
         //else sign the user up
         $userSignUp = User::create([
-            'name'=>$userInfo->user['name'],
-            'email'=>$userInfo->user['email'],
+            'name'=>$userInfo->name,
+            'email'=>$userInfo->email,
             'avatar'=>$userInfo->avatar,
             'provider'=>$social,
             'provider_id'=>$userInfo->id,
@@ -79,7 +79,7 @@ class LoginController extends Controller
         //finally log the user in
         if ($userSignUp){
             if (Auth::loginUsingId($userSignUp->id)){
-                return redirect()->route('home');
+                return redirect()->route('profiles.profile.create');
             }
         }
     }

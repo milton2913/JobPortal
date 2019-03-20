@@ -46,8 +46,8 @@ return [
         'redirect' => 'http://localhost:8000/login/facebook/callback',
     ],
     'linkedin' => [
-        'client_id' => env('81uox25xtxk0fx'),
-        'client_secret' => env('lKZNgihLXPkDYKvJ'),
+        'client_id' => '86ylnz7maonpct',
+        'client_secret' => 'dOSm71kpli153Ur5',
         'redirect' => 'http://localhost:8000/login/linkedin/callback'
     ],
 
