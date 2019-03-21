@@ -5,7 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">
+                    <a href="{{url('login/facebook')}}" class="btn btn-secondary">
+                        <i clas>Sign in with Facebook</i>
+                    </a>
+                    <a href="{{url('login/linkedin')}}" class="btn btn-secondary">
+                        <i clas>Sign in with LinkedIn</i>
+                    </a>
+                    <a href="{{url('login/google')}}" class="btn btn-secondary">
+                        <i clas>Sign in with Google</i>
+                    </a>
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">

@@ -306,6 +306,35 @@
                                     </div>
                                 </div>
                                 {{--certification--}}
+                                <div class="card-body mb-1">
+                                    <div class="d-flex justify-content-between alert alert-secondary">
+                                        <h6 class="font-weight-bold m-0">
+                                            Language Proficiency
+                                        </h6>
+                                        <a href="{{url('jobseeker/language')}}"><i class="fa fa-edit"></i></a>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table  class="table table-bordered table-hover">
+                                            <thead>
+                                            <th>Language Name</th>
+                                            <th>Written</th>
+                                            <th>Listening</th>
+                                            <th>Spoken</th>
+                                            <th>Reading</th>
+                                            </thead>
+                                            @foreach($resume->language as $item)
+                                                <tr>
+                                                    <td>{{$item->name}}</td>
+                                                    <td>{{$item->written}}</td>
+                                                    <td>{{$item->listening}}</td>
+                                                    <td>{{$item->spoken}}</td>
+                                                    <td>{{$item->reading}}</td>
+                                                </tr>
+                                            @endforeach
+                                        </table>
+                                    </div>
+                                </div>
+                                {{--certification--}}
 
                                 <div class="card-body mb-1">
                                     <div class="d-flex justify-content-between alert alert-secondary">

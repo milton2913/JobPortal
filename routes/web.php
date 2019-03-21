@@ -55,6 +55,7 @@ Route::resource('jobseeker/certification','Jobseeker\CertificationController');/
 Route::resource('jobseeker/reference','Jobseeker\ReferenceController');//Reference
 Route::resource('jobseeker/expertise','Jobseeker\ExpertiseController');//expertise
 Route::resource('jobseeker/cv-objective','Jobseeker\CvObjectiveController');//cv objective
+Route::resource('jobseeker/language','Jobseeker\LanguageController');//Language
 Route::get('cv-objective-status','Jobseeker\CvObjectiveController@cvObjectiveStatus');
 Route::get('jobseeker/profile','Jobseeker\JobseekerController@profile');
 

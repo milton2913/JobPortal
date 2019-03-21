@@ -60,4 +60,8 @@ class User extends Authenticatable
     public function expertise(){
         return $this->hasMany('App\Models\Expertise');
     }
+
+    public function language(){
+        return $this->hasMany('App\Models\Language');
+    }
 }

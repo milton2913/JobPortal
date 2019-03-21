@@ -15,11 +15,12 @@ class CreateLanguagesTable extends Migration
     {
         Schema::create('languages', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name',150);
+            $table->enum('written',['Average','Good','Very Good','Excellent']);
+            $table->enum('listening',['Average','Good','Very Good','Excellent']);
+            $table->enum('spoken',['Average','Good','Very Good','Excellent']);
+            $table->enum('reading',['Average','Good','Very Good','Excellent']);
             $table->integer('user_id')->unsigned();
-            $table->string('title',100);
-            $table->enum('reading',['High','Medium','Low']);
-            $table->enum('writing',['High','Medium','Low']);
-            $table->enum('speaking',['High','Medium','Low']);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
