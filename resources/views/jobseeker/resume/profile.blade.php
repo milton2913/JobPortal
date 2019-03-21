@@ -334,8 +334,31 @@
                                         </table>
                                     </div>
                                 </div>
-                                {{--certification--}}
+                                {{--Language--}}
+                                <div class="card-body mb-1">
+                                    <div class="d-flex justify-content-between alert alert-secondary">
+                                        <h6 class="font-weight-bold m-0">
+                                           Social Media
+                                        </h6>
+                                        <a href="{{url('jobseeker/social')}}"><i class="fa fa-edit"></i></a>
+                                    </div>
+                                    <div class="table-responsive">
 
+                                            @foreach($resume->social as $item)
+
+
+                                                  <a target="_blank" href="{{$item->url}}">
+                                                            <i class="{{$item->socialCategory->icon}} fa-4x"></i>
+                                                        </a>
+                                                        &nbsp;
+                                                        &nbsp;
+
+
+                                            @endforeach
+
+                                    </div>
+                                </div>
+                                {{--socail media--}}
                                 <div class="card-body mb-1">
                                     <div class="d-flex justify-content-between alert alert-secondary">
                                         <h6 class="font-weight-bold m-0">

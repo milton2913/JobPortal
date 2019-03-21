@@ -157,7 +157,7 @@
                 <li><a class="treeview-item" href="{{url('admin/expert-status')}}"><i class="icon fa fa-circle-o"></i>Expert
                         Status</a></li>
                 <li><a class="treeview-item" href="{{url('admin/reference-type')}}"><i class="icon fa fa-circle-o"></i>Reference
-                        Type</a></li>
+                <li><a class="treeview-item" href="{{url('admin/social-category')}}"><i class="icon fa fa-circle-o"></i>Social Category</a></li>
             </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
@@ -178,6 +178,7 @@
                 </li>
                 <li><a class="treeview-item" href="{{url('jobseeker/cv-objective')}}"><i class="icon fa fa-circle-o"></i>Carrier Objective</a></li>
                 <li><a class="treeview-item" href="{{url('jobseeker/language')}}"><i class="icon fa fa-circle-o"></i>Language Proficiency  </a></li>
+                <li><a class="treeview-item" href="{{url('jobseeker/social')}}"><i class="icon fa fa-circle-o"></i>Social Media   </a></li>
 
             </ul>
         </li>

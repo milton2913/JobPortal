@@ -64,4 +64,7 @@ class User extends Authenticatable
     public function language(){
         return $this->hasMany('App\Models\Language');
     }
+    public function social(){
+        return $this->hasMany('App\Models\Social');
+    }
 }

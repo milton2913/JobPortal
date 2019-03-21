@@ -41,6 +41,7 @@ Route::resource('admin/job-level','Admin\JobLevelController');
 Route::resource('admin/subject','Admin\SubjectController');
 Route::resource('admin/expert-status','Admin\ExpertStatusController');
 Route::resource('admin/reference-type','Admin\ReferenceTypeController');
+Route::resource('admin/social-category','Admin\SocialCategoryController');
 
 //jobseeker section
 
@@ -56,6 +57,7 @@ Route::resource('jobseeker/reference','Jobseeker\ReferenceController');//Referen
 Route::resource('jobseeker/expertise','Jobseeker\ExpertiseController');//expertise
 Route::resource('jobseeker/cv-objective','Jobseeker\CvObjectiveController');//cv objective
 Route::resource('jobseeker/language','Jobseeker\LanguageController');//Language
+Route::resource('jobseeker/social','Jobseeker\SocialController');//Language
 Route::get('cv-objective-status','Jobseeker\CvObjectiveController@cvObjectiveStatus');
 Route::get('jobseeker/profile','Jobseeker\JobseekerController@profile');
 

@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="tile">
                 <div class="tile-body">
-                    <a href="{{ url('jobseeker/training') }}" title="Back"><button class="btn btn-primary btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                    <a href="{{ url('jobseeker/social') }}" title="Back"><button class="btn btn-primary btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
                 </div>
             </div>
         </div>
@@ -17,10 +17,10 @@
                 <h3 class="tile-title">Education</h3>
                 <div class="tile-body">
 
-                    {!! Form::model($training, ['method' => 'PATCH','url' => ['jobseeker/training', $training->id],'class' => 'row']) !!}
+                    {!! Form::model($social, ['method' => 'PATCH','url' => ['jobseeker/social', $social->id],'class' => 'row']) !!}
 
 
-                    @include ('jobseeker.training.form',['text'=>"Update"])
+                    @include ('jobseeker.social.form',['text'=>"Update"])
 
 
 
@@ -45,7 +45,7 @@
     </div>
     </div>
     --}}
-    @include('jobseeker.training.get_index')
+    @include('jobseeker.social.get_index')
 @endsection
 
 
