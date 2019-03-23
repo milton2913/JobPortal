@@ -5,17 +5,18 @@
     <div class="row">
         <div class="col-md-12">
             <div class="tile">
-                <div class="content-footer">
+                {{--<div class="content-footer">
                     <button id="btn-export" onclick="exportHTML();">Export to word
                         doc</button>
-                </div>
+                </div>--}}
+
                 <div class="tile-body ">
                     <div class="row source-html-outer">
                         <div class="col col-md-3 pt-100">
                             <div class="card">
                                 <div class="text-center pt-4 pb-5 pl-3 pr-3 bg-primary text-white">
 
-                                    <img src="{{url('assets/uploads/avatar/'.$resume->avatar)}}" class="img-fluid rounded-circle" height="100">
+                                    <img src="{{url($resume->avatar)}}" class="img-fluid rounded-circle" height="100">
 
                                     <h6 class="font-weight-bold text-uppercase animated fadeInUp">{{$resume->name}} </h6>
                                     <h6 class="font-weight-normal animated fadeInUp"><i class="fas fa-envelope"></i> {{$resume->email}}</h6>

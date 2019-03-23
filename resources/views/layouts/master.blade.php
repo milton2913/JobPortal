@@ -179,6 +179,7 @@
                 <li><a class="treeview-item" href="{{url('jobseeker/cv-objective')}}"><i class="icon fa fa-circle-o"></i>Carrier Objective</a></li>
                 <li><a class="treeview-item" href="{{url('jobseeker/language')}}"><i class="icon fa fa-circle-o"></i>Language Proficiency  </a></li>
                 <li><a class="treeview-item" href="{{url('jobseeker/social')}}"><i class="icon fa fa-circle-o"></i>Social Media   </a></li>
+                <li><a class="treeview-item" href="{{url('jobseeker/resume-upload')}}"><i class="icon fa fa-circle-o"></i>Resume Upload  </a></li>
 
             </ul>
         </li>

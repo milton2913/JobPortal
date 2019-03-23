@@ -58,9 +58,7 @@ class ProfileController extends Controller
             if ($request->hasFile('avatar')) {
                 //$uploadPath = public_path('/assets/uploads/avatar');
                 $uploadPath = Skill::makeFilePath("assets/uploads/avatar/");
-
                 $extension = $request->file('avatar')->getClientOriginalExtension();
-
                 $fileName = $this->makeIdentity($request->ip()).$this->makeVerificationCode($request->ip()).'.' . $extension;
                 $request->file('avatar')->move($uploadPath, $fileName);
                 $userData['avatar'] = $uploadPath.'/'.$fileName;

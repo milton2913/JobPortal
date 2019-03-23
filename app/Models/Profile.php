@@ -20,7 +20,9 @@ class Profile extends Model
         'identity_type',
         'identity_no',
         'user_id',
-        'dob'
+        'dob',
+        'resume',
+        'video_resume'
     ];
 
     /**
