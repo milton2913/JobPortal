@@ -13,7 +13,7 @@ use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
-
+use File;
 
 class Skill{
 
@@ -172,5 +172,24 @@ return $rul;
 
         }
         return $years." year, ". $months. ' month, '. $days . ' days';
+    }
+
+    public static function makeFilePath($path){
+        $year_path = $path.'/'.date('Y');
+        if (File::exists($year_path)) {
+            if (File::exists($year_path.'/'.date('m'))){
+                $uploadPath = $year_path.'/'.date('m');
+            }else{
+                File::makeDirectory($year_path.'/'.date('m'));
+                $uploadPath = $year_path.'/'.date('m');
+            }
+        }else{
+            File::makeDirectory($year_path);
+            $month_path =$year_path.'/'.date('m');
+            File::makeDirectory($month_path);
+            $uploadPath = $month_path;
+        }
+
+        return $uploadPath;
     }
 }

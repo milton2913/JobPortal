@@ -57,20 +57,7 @@ class ProfileController extends Controller
 
             if ($request->hasFile('avatar')) {
                 //$uploadPath = public_path('/assets/uploads/avatar');
-                $year_path = "assets/uploads/avatar/".date('Y');
-                if (File::exists($year_path)) {
-                    if (File::exists($year_path.'/'.date('m'))){
-                        $uploadPath = $year_path.'/'.date('m');
-                    }else{
-                        File::makeDirectory($year_path.'/'.date('m'));
-                        $uploadPath = $year_path.'/'.date('m');
-                    }
-                }else{
-                    File::makeDirectory($year_path);
-                    $month_path =$year_path.'/'.date('m');
-                    File::makeDirectory($month_path);
-                    $uploadPath = $month_path;
-                }
+                $uploadPath = Skill::makeFilePath("assets/uploads/avatar/");
 
                 $extension = $request->file('avatar')->getClientOriginalExtension();
 
