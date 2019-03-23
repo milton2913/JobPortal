@@ -15,6 +15,7 @@ use App\Helpers\Skill;
 use Carbon\Carbon;
 use App\Models\Address;
 use DB;
+use File;
 class ProfileController extends Controller
 {
     /**
@@ -55,14 +56,29 @@ class ProfileController extends Controller
             //avatar add in user tables
 
             if ($request->hasFile('avatar')) {
-                $uploadPath = public_path('/assets/uploads/avatar');
+                //$uploadPath = public_path('/assets/uploads/avatar');
+                $year_path = "assets/uploads/avatar/".date('Y');
+                if (File::exists($year_path)) {
+                    if (File::exists($year_path.'/'.date('m'))){
+                        $uploadPath = $year_path.'/'.date('m');
+                    }else{
+                        File::makeDirectory($year_path.'/'.date('m'));
+                        $uploadPath = $year_path.'/'.date('m');
+                    }
+                }else{
+                    File::makeDirectory($year_path);
+                    $month_path =$year_path.'/'.date('m');
+                    File::makeDirectory($month_path);
+                    $uploadPath = $month_path;
+                }
+
                 $extension = $request->file('avatar')->getClientOriginalExtension();
 
                 $fileName = $this->makeIdentity($request->ip()).$this->makeVerificationCode($request->ip()).'.' . $extension;
                 $request->file('avatar')->move($uploadPath, $fileName);
-                $userData['avatar'] = $fileName;
+                $userData['avatar'] = $uploadPath.'/'.$fileName;
                 if ($user->avatar != null) {
-                    $existingPath = 'assets/uploads/avatar/'.$user->avatar;
+                    $existingPath = $uploadPath.'/'.$user->avatar;
                     if (file_exists( $existingPath)) {
                         unlink(public_path($existingPath));
                     }
@@ -96,6 +112,7 @@ class ProfileController extends Controller
                 $address['user_id'] = $user_id;
             }
             Skill::address($address);
+
             $url = Skill::checkUserStatus();
 
         }catch (Exception $exception) {

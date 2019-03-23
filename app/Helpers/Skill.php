@@ -20,23 +20,25 @@ class Skill{
 
     //after profile create and after login check this function
     public static function checkUserStatus(){
+
         if (auth()->user()->is_status == 3) {
-            return 'profile/create';
+            $rul = 'profile/create';
         }elseif (auth()->user()->is_status==2){
             $service = self::checkService();
             if ($service==false){
                 dd("Service Choice page");
             }else{
-                self::dashboard($service);
+                $rul = self::dashboard($service);
             }
-        }elseif (auth()->user()->is_status==1){
-            return 'profile done!';
-        }elseif (auth()->user()->is_status==0){
-            return 'profile inactive!';
-        }else{
-            return '/home';
-        }
 
+        }elseif (auth()->user()->is_status==1){
+            $rul =  'profile done!';
+        }elseif (auth()->user()->is_status==0){
+            $rul = 'profile inactive!';
+        }else{
+            $rul = '/home';
+        }
+return $rul;
     }
 
     //check user service if found any service then return default service
@@ -59,11 +61,13 @@ class Skill{
     //redirect dashboard
 
     public static function dashboard($service){
+       // dd($service->id);
+
         switch ($service->id){
             case 1:
                 return 'employer/dashboard';
             case 2:
-                return 'jobseeker/dashboard';
+                return 'profile/create';
             default:
                 return 'home';
         }
