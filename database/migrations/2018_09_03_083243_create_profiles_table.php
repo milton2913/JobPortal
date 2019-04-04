@@ -29,6 +29,8 @@ class CreateProfilesTable extends Migration
             $table->string('identity_no',20)->nullable();
             $table->string('alternate_email',100)->nullable();
             $table->string('alternate_mobile',15)->nullable();
+            $table->string('resume',150)->nullable();
+            $table->text('video_resume')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('set null');

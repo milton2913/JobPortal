@@ -70,7 +70,7 @@
                     <div class="col-md-3 col-lg-4">
                         <div class="form-group {{ $errors->has('nationality') ? 'has-error' : '' }}">
                             <label for="nationality" class="control-label">Nationality</label>
-   {!! Form::select('nationality', $nationality,optional($user->profile)->country_id?optional($user->profile)->country_id:null,['class'=>'custom-select mb-3','placeholder'=>" ",'required'=>true]) !!}
+                            {!! Form::select('nationality', $nationality,optional($user->profile)->country_id?optional($user->profile)->country_id:null,['class'=>'custom-select mb-3','placeholder'=>" ",'required'=>true]) !!}
                             {!! $errors->first('nationality', '<p class="help-block">:message</p>') !!}
                         </div>
                     </div>
@@ -89,10 +89,10 @@
                     </div>
                 </div>
             </div>
-            <div  class="col-md-2 col-lg-3">
+            <div class="col-md-2 col-lg-3">
                 <div class="avatar-upload">
                     <div class="avatar-edit">
-                        <input type='file' id="imageUpload" name="avatar" accept=".png, .jpg, .jpeg" />
+                        <input type='file' id="imageUpload" name="avatar" accept=".png, .jpg, .jpeg"/>
                         <label for="imageUpload"></label>
                     </div>
                     <div class="avatar-preview">
@@ -152,8 +152,10 @@
         <div class="row" id="present_address_area">
             <div class="col-sm-12 col-md-12 col-lg-12"><h5>Present Address</h5>
                 <div class="form-group">
-                    {{Form::radio('present_address', 1, optional(Skill::presentAddress())->in_bangladesh==1?"checked":false,['id'=>'pa1'])}}Inside Bangladesh
-                    {{Form::radio('present_address', 0, optional(Skill::presentAddress())->in_bangladesh==0?"checked":false,['id'=>'pa2'])}}Outside Bangladesh
+                    {{Form::radio('present_address', 1, optional(Skill::presentAddress())->in_bangladesh==1?"checked":false,['id'=>'pa1'])}}
+                    Inside Bangladesh
+                    {{Form::radio('present_address', 0, optional(Skill::presentAddress())->in_bangladesh==0?"checked":false,['id'=>'pa2'])}}
+                    Outside Bangladesh
                 </div>
             </div>
             <div class="col-sm-6 col-md-3 col-lg-3">
@@ -202,21 +204,23 @@
             </div>
         </div>
 
-<div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12">
-        <h5>
-            Same as Present Address
-            {{Form::checkbox('same_address', 1, false,['id'=>'same_as_present'])}}
-        </h5>
-    </div>
-</div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12">
+                <h5>
+                    Same as Present Address
+                    {{Form::checkbox('same_address', 1, false,['id'=>'same_as_present'])}}
+                </h5>
+            </div>
+        </div>
         <div class="row" id="permanent_address_area">
             <div class="col-sm-12 col-md-6 col-lg-6"><h5>Permanent Address </h5></div>
 
             <div class="col-sm-12 col-md-12 col-lg-12">
                 <div class="form-group">
-                    {{Form::radio('permanent_address', 1, optional(Skill::permanentAddress())->in_bangladesh==1?"checked":false,['id'=>'ppa1','class'=>'same_as_present'])}}Inside Bangladesh
-                    {{Form::radio('permanent_address', 0, optional(Skill::permanentAddress())->in_bangladesh==0?"checked":false,['id'=>'ppa2','class'=>'same_as_present'])}}Outside Bangladesh
+                    {{Form::radio('permanent_address', 1, optional(Skill::permanentAddress())->in_bangladesh==1?"checked":false,['id'=>'ppa1','class'=>'same_as_present'])}}
+                    Inside Bangladesh
+                    {{Form::radio('permanent_address', 0, optional(Skill::permanentAddress())->in_bangladesh==0?"checked":false,['id'=>'ppa2','class'=>'same_as_present'])}}
+                    Outside Bangladesh
                 </div>
             </div>
 
@@ -278,108 +282,108 @@
     <style>
         .card-default {
             color: #333;
-            background: linear-gradient(#fff,#ebebeb) repeat scroll 0 0 transparent;
+            background: linear-gradient(#fff, #ebebeb) repeat scroll 0 0 transparent;
             font-weight: 600;
             border-radius: 6px;
         }
 
     </style>
-    @endpush
+@endpush
 @push('script')
     <script>
         //present country  on change call division
 
-        $('#present_country_id').change(function(){
+        $('#present_country_id').change(function () {
             var countryID = $(this).val();
-            if(countryID){
+            if (countryID) {
                 $.ajax({
-                    type:"GET",
-                    url:"{{url('get-state-list')}}?country_id="+countryID,
-                    success:function(res){
-                        if(res){
+                    type: "GET",
+                    url: "{{url('get-state-list')}}?country_id=" + countryID,
+                    success: function (res) {
+                        if (res) {
                             $("#present_division_id").empty();
                             $("#present_division_id").append('<option>Select</option>');
-                            $.each(res,function(key,value){
-                                $("#present_division_id").append('<option value="'+key+'">'+value+'</option>');
+                            $.each(res, function (key, value) {
+                                $("#present_division_id").append('<option value="' + key + '">' + value + '</option>');
                             });
                             //custom
                             $("#present_district_id").empty();
                             $("#present_thana_id").empty();
                             //custom
-                        }else{
+                        } else {
                             $("#present_division_id").empty();
                         }
                     }
                 });
-            }else{
+            } else {
                 $("#present_division_id").empty();
                 $("#present_district_id").empty();
                 $("#present_thana_id").empty();
             }
         });
         //present division  on change call district
-        $('#present_division_id').on('change',function(){
+        $('#present_division_id').on('change', function () {
             var stateID = $(this).val();
-            if(stateID){
+            if (stateID) {
                 $.ajax({
-                    type:"GET",
-                    url:"{{url('get-city-list')}}?state_id="+stateID,
-                    success:function(res){
-                        if(res){
+                    type: "GET",
+                    url: "{{url('get-city-list')}}?state_id=" + stateID,
+                    success: function (res) {
+                        if (res) {
                             $("#present_district_id").empty();
                             $("#present_district_id").append('<option>Select</option>');
-                            $.each(res,function(key,value){
-                                $("#present_district_id").append('<option value="'+key+'">'+value+'</option>');
+                            $.each(res, function (key, value) {
+                                $("#present_district_id").append('<option value="' + key + '">' + value + '</option>');
                             });
                             $("#present_thana_id").empty();
-                        }else{
+                        } else {
                             $("#present_district_id").empty();
                         }
                     }
                 });
-            }else{
+            } else {
                 $("#present_district_id").empty();
             }
 
         });
-        $('#present_district_id').on('change',function(){
+        $('#present_district_id').on('change', function () {
             var districtID = $(this).val();
-            if(districtID){
+            if (districtID) {
                 $.ajax({
-                    type:"GET",
-                    url:"{{url('get-thana-list')}}?district_id="+districtID,
-                    success:function(res){
-                        if(res){
+                    type: "GET",
+                    url: "{{url('get-thana-list')}}?district_id=" + districtID,
+                    success: function (res) {
+                        if (res) {
                             $("#present_thana_id").empty();
                             $("#present_thana_id").append('<option>Select</option>');
-                            $.each(res,function(key,value){
-                                $("#present_thana_id").append('<option value="'+key+'">'+value+'</option>');
+                            $.each(res, function (key, value) {
+                                $("#present_thana_id").append('<option value="' + key + '">' + value + '</option>');
                             });
-                        }else{
+                        } else {
                             $("#present_thana_id").empty();
                         }
                     }
                 });
-            }else{
+            } else {
                 $("#present_thana_id").empty();
             }
 
         });
     </script>
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             //on load permanent address some field disable
             var permanent_address = $("input[name='permanent_address']:checked").val();
-            if(permanent_address==0){
+            if (permanent_address == 0) {
                 $('#permanent_address_area:input,.permanent_out').attr('disabled', true);
             }
             //on load present address some field disable
             var present_address = $("input[name='present_address']:checked").val();
-            if(present_address==0){
+            if (present_address == 0) {
                 $('#present_address_area:input,.present_out').attr('disabled', true);
             }
             //present address disable code here
-            $("#pa2").click(function(){
+            $("#pa2").click(function () {
                 $("#present_division_id").empty();
                 $("#present_district_id").empty();
                 $("#present_thana_id").empty();
@@ -388,12 +392,12 @@
 
             });
             //present address enable code hear
-            $("#pa1").click(function(){
+            $("#pa1").click(function () {
                 $('#present_address_area :input,.present_out').removeAttr('disabled');
             });
             /////////////////////////////////
             //permanent address disable code here
-            $("#ppa2").click(function(){
+            $("#ppa2").click(function () {
                 $("#permanent_division_id").empty();
                 $("#permanent_district_id").empty();
                 $("#permanent_thana_id").empty();
@@ -401,12 +405,12 @@
                 $('#permanent_address_area:input,.permanent_out').attr('disabled', true);
             });
             //permanent address  enable code here
-            $("#ppa1").click(function(){
+            $("#ppa1").click(function () {
                 $('#permanent_address_area :input,.permanent_out').removeAttr('disabled');
             });
             //permanent address same as present address, all field are disable
             $('#same_as_present').on('change', function () {
-                    sameAsPermanent();
+                sameAsPermanent();
             });
         });
         //date of birth using calender
@@ -420,79 +424,79 @@
     </script>
     <script>
 
-        $('#permanent_country_id').change(function(){
+        $('#permanent_country_id').change(function () {
             var countryID = $(this).val();
-            if(countryID){
+            if (countryID) {
                 $.ajax({
-                    type:"GET",
-                    url:"{{url('get-state-list')}}?country_id="+countryID,
-                    success:function(res){
-                        if(res){
+                    type: "GET",
+                    url: "{{url('get-state-list')}}?country_id=" + countryID,
+                    success: function (res) {
+                        if (res) {
                             $("#permanent_division_id").empty();
                             $("#permanent_division_id").append('<option>Select</option>');
-                            $.each(res,function(key,value){
-                                $("#permanent_division_id").append('<option value="'+key+'">'+value+'</option>');
+                            $.each(res, function (key, value) {
+                                $("#permanent_division_id").append('<option value="' + key + '">' + value + '</option>');
                             });
                             //custom
                             $("#permanent_district_id").empty();
                             $("#permanent_thana_id").empty();
                             //custom
 
-                        }else{
+                        } else {
                             $("#permanent_division_id").empty();
                         }
                     }
                 });
-            }else{
+            } else {
                 $("#permanent_division_id").empty();
                 $("#permanent_district_id").empty();
                 $("#permanent_thana_id").empty();
             }
         });
-        $('#permanent_division_id').on('change',function(){
+        $('#permanent_division_id').on('change', function () {
             var stateID = $(this).val();
-            if(stateID){
+            if (stateID) {
                 $.ajax({
-                    type:"GET",
-                    url:"{{url('get-city-list')}}?state_id="+stateID,
-                    success:function(res){
-                        if(res){
+                    type: "GET",
+                    url: "{{url('get-city-list')}}?state_id=" + stateID,
+                    success: function (res) {
+                        if (res) {
                             $("#permanent_district_id").empty();
                             $("#permanent_district_id").append('<option>Select</option>');
-                            $.each(res,function(key,value){
-                                $("#permanent_district_id").append('<option value="'+key+'">'+value+'</option>');
+                            $.each(res, function (key, value) {
+                                $("#permanent_district_id").append('<option value="' + key + '">' + value + '</option>');
                             });
                             $("#permanent_thana_id").empty();
-                        }else{
+                        } else {
                             $("#permanent_district_id").empty();
                         }
                     }
                 });
-            }else{
+            } else {
                 $("#permanent_district_id").empty();
             }
 
         });
-        $('#permanent_district_id').on('change',function(){
+        $('#permanent_district_id').on('change', function () {
             var districtID = $(this).val();
-            if(districtID){
+            if (districtID) {
                 $.ajax({
-                    type:"GET",
-                    url:"{{url('get-thana-list')}}?district_id="+districtID,
-                    success:function(res){
-                        if(res){
+                    type: "GET",
+                    url: "{{url('get-thana-list')}}?district_id=" + districtID,
+                    success: function (res) {
+                        if (res) {
                             $("#permanent_thana_id").empty();
                             $("#permanent_thana_id").append('<option>Select</option>');
-                            $.each(res,function(key,value){
-                                $("#permanent_thana_id").append('<option value="'+key+'">'+value+'</option>');
+                            $.each(res, function (key, value) {
+                                $("#permanent_thana_id").append('<option value="' + key + '">' + value + '</option>');
                             });
 
-                        }else{
+                        } else {
                             $("#permanent_thana_id").empty();
                         }
                     }
                 });
-            }else{
+            } else {
                 $("#permanent_thana_id").empty();
             }
 
@@ -521,9 +525,9 @@
             } else {
                 $('#permanent_address_area :input,.same_as_present').removeAttr('disabled');
                 var permanent_address = $("input[name='permanent_address']:checked").val();
-                if(permanent_address==0){
+                if (permanent_address == 0) {
                     $('#permanent_address_area:input,.permanent_out').attr('disabled', true);
-                }else{
+                } else {
                     $('#permanent_address_area :input,.permanent_out').removeAttr('disabled');
                     $("#permanent_country_id").val('');
                     $("#permanent_division_id").empty();
@@ -539,4 +543,4 @@
     </script>
 
 
-    @endpush
+@endpush

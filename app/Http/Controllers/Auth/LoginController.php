@@ -73,8 +73,8 @@ class LoginController extends Controller
             'email'=>$userInfo->email,
             'avatar'=>$userInfo->avatar,
             'provider'=>$social,
+            'is_status'=>'3',
             'provider_id'=>$userInfo->id,
-            'password'=> bcrypt('123456'),
         ]);
         //finally log the user in
         if ($userSignUp){

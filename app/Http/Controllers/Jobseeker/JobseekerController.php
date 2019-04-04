@@ -34,6 +34,9 @@ class JobseekerController extends Controller
         return view('jobseeker.resume.resume-upload');
     }
 
+    /*
+     * Resume Upload
+     */
     public function uploadResume(Request $request){
 
 
@@ -60,6 +63,7 @@ class JobseekerController extends Controller
             $fileName = $this->makeIdentity($request->ip()).'.' . $extension;
             $request->file('resume')->move($uploadPath, $fileName);
             $data['resume'] = $uploadPath.'/'.$fileName;
+
             if ($pro->resume != null) {
                 $existingPath = $pro->resume;
 

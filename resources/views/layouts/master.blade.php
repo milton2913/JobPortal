@@ -16,85 +16,86 @@
 </head>
 <body class="app sidebar-mini rtl">
 <!-- Navbar-->
-<header class="app-header"><a class="app-header__logo" href="index.html">Vali</a>
+<header class="app-header"><a class="app-header__logo" href="index.html">Skill Jobs</a>
     <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
                                     aria-label="Hide Sidebar"></a>
     <!-- Navbar Right Menu-->
     <ul class="app-nav">
 
-        {{--<li class="app-search">
-            <input class="app-search__input" type="search" placeholder="Search">
-            <button class="app-search__button"><i class="fa fa-search"></i></button>
-        </li>
-        <!--Notification Menu-->
-        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i
-                        class="fa fa-bell-o fa-lg"></i></a>
-            <ul class="app-notification dropdown-menu dropdown-menu-right">
-                <li class="app-notification__title">You have 4 new notifications.</li>
+    {{--<li class="app-search">
+        <input class="app-search__input" type="search" placeholder="Search">
+        <button class="app-search__button"><i class="fa fa-search"></i></button>
+    </li>
+    <!--Notification Menu-->
+    <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Show notifications"><i
+                    class="fa fa-bell-o fa-lg"></i></a>
+        <ul class="app-notification dropdown-menu dropdown-menu-right">
+            <li class="app-notification__title">You have 4 new notifications.</li>
+            <div class="app-notification__content">
+                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span
+                                    class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i
+                                        class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
+                        <div>
+                            <p class="app-notification__message">Lisa sent you a mail</p>
+                            <p class="app-notification__meta">2 min ago</p>
+                        </div>
+                    </a></li>
+                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span
+                                    class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i
+                                        class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
+                        <div>
+                            <p class="app-notification__message">Mail server not working</p>
+                            <p class="app-notification__meta">5 min ago</p>
+                        </div>
+                    </a></li>
+                <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span
+                                    class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i
+                                        class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
+                        <div>
+                            <p class="app-notification__message">Transaction complete</p>
+                            <p class="app-notification__meta">2 days ago</p>
+                        </div>
+                    </a></li>
                 <div class="app-notification__content">
-                    <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span
-                                        class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-primary"></i><i
+                    <li><a class="app-notification__item" href="javascript:;"><span
+                                    class="app-notification__icon"><span class="fa-stack fa-lg"><i
+                                            class="fa fa-circle fa-stack-2x text-primary"></i><i
                                             class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
                             <div>
                                 <p class="app-notification__message">Lisa sent you a mail</p>
                                 <p class="app-notification__meta">2 min ago</p>
                             </div>
                         </a></li>
-                    <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span
-                                        class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-danger"></i><i
+                    <li><a class="app-notification__item" href="javascript:;"><span
+                                    class="app-notification__icon"><span class="fa-stack fa-lg"><i
+                                            class="fa fa-circle fa-stack-2x text-danger"></i><i
                                             class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
                             <div>
                                 <p class="app-notification__message">Mail server not working</p>
                                 <p class="app-notification__meta">5 min ago</p>
                             </div>
                         </a></li>
-                    <li><a class="app-notification__item" href="javascript:;"><span class="app-notification__icon"><span
-                                        class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x text-success"></i><i
+                    <li><a class="app-notification__item" href="javascript:;"><span
+                                    class="app-notification__icon"><span class="fa-stack fa-lg"><i
+                                            class="fa fa-circle fa-stack-2x text-success"></i><i
                                             class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
                             <div>
                                 <p class="app-notification__message">Transaction complete</p>
                                 <p class="app-notification__meta">2 days ago</p>
                             </div>
                         </a></li>
-                    <div class="app-notification__content">
-                        <li><a class="app-notification__item" href="javascript:;"><span
-                                        class="app-notification__icon"><span class="fa-stack fa-lg"><i
-                                                class="fa fa-circle fa-stack-2x text-primary"></i><i
-                                                class="fa fa-envelope fa-stack-1x fa-inverse"></i></span></span>
-                                <div>
-                                    <p class="app-notification__message">Lisa sent you a mail</p>
-                                    <p class="app-notification__meta">2 min ago</p>
-                                </div>
-                            </a></li>
-                        <li><a class="app-notification__item" href="javascript:;"><span
-                                        class="app-notification__icon"><span class="fa-stack fa-lg"><i
-                                                class="fa fa-circle fa-stack-2x text-danger"></i><i
-                                                class="fa fa-hdd-o fa-stack-1x fa-inverse"></i></span></span>
-                                <div>
-                                    <p class="app-notification__message">Mail server not working</p>
-                                    <p class="app-notification__meta">5 min ago</p>
-                                </div>
-                            </a></li>
-                        <li><a class="app-notification__item" href="javascript:;"><span
-                                        class="app-notification__icon"><span class="fa-stack fa-lg"><i
-                                                class="fa fa-circle fa-stack-2x text-success"></i><i
-                                                class="fa fa-money fa-stack-1x fa-inverse"></i></span></span>
-                                <div>
-                                    <p class="app-notification__message">Transaction complete</p>
-                                    <p class="app-notification__meta">2 days ago</p>
-                                </div>
-                            </a></li>
-                    </div>
                 </div>
-                <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
-            </ul>
-        </li>--}}
-        <!-- User Menu-->
+            </div>
+            <li class="app-notification__footer"><a href="#">See all notifications.</a></li>
+        </ul>
+    </li>--}}
+    <!-- User Menu-->
         <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i
                         class="fa fa-user fa-lg"></i></a>
             <ul class="dropdown-menu settings-menu dropdown-menu-right">
                 <li><a class="dropdown-item" href="#"><i class="fa fa-cog fa-lg"></i> Settings</a></li>
-                <li><a class="dropdown-item" href="{{url('jobseeker/profile')}}"><i class="fa fa-user fa-lg"></i> Profile</a>
+                <li><a class="dropdown-item" href="{{url('jobseeker/profile')}}"><i class="fa fa-user fa-lg"></i>
+                        Profile</a>
                 </li>
                 <li>
 
@@ -157,7 +158,8 @@
                 <li><a class="treeview-item" href="{{url('admin/expert-status')}}"><i class="icon fa fa-circle-o"></i>Expert
                         Status</a></li>
                 <li><a class="treeview-item" href="{{url('admin/reference-type')}}"><i class="icon fa fa-circle-o"></i>Reference
-                <li><a class="treeview-item" href="{{url('admin/social-category')}}"><i class="icon fa fa-circle-o"></i>Social Category</a></li>
+                <li><a class="treeview-item" href="{{url('admin/social-category')}}"><i class="icon fa fa-circle-o"></i>Social
+                        Category</a></li>
             </ul>
         </li>
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
@@ -176,10 +178,14 @@
                 </li>
                 <li><a class="treeview-item" href="{{url('jobseeker/expertise')}}"><i class="icon fa fa-circle-o"></i>Expertise</a>
                 </li>
-                <li><a class="treeview-item" href="{{url('jobseeker/cv-objective')}}"><i class="icon fa fa-circle-o"></i>Carrier Objective</a></li>
-                <li><a class="treeview-item" href="{{url('jobseeker/language')}}"><i class="icon fa fa-circle-o"></i>Language Proficiency  </a></li>
-                <li><a class="treeview-item" href="{{url('jobseeker/social')}}"><i class="icon fa fa-circle-o"></i>Social Media   </a></li>
-                <li><a class="treeview-item" href="{{url('jobseeker/resume-upload')}}"><i class="icon fa fa-circle-o"></i>Resume Upload  </a></li>
+                <li><a class="treeview-item" href="{{url('jobseeker/cv-objective')}}"><i
+                                class="icon fa fa-circle-o"></i>Carrier Objective</a></li>
+                <li><a class="treeview-item" href="{{url('jobseeker/language')}}"><i class="icon fa fa-circle-o"></i>Language
+                        Proficiency </a></li>
+                <li><a class="treeview-item" href="{{url('jobseeker/social')}}"><i class="icon fa fa-circle-o"></i>Social
+                        Media </a></li>
+                <li><a class="treeview-item" href="{{url('jobseeker/resume-upload')}}"><i
+                                class="icon fa fa-circle-o"></i>Resume Upload </a></li>
 
             </ul>
         </li>
@@ -201,11 +207,14 @@
     @yield('content')
 </main>
 <!-- Essential javascripts for application to work-->
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="{{url('assets/vali/js/popper.min.js')}}"></script>
-<script src="{{url('assets/vali/js/bootstrap.min.js')}}"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
 <script src="{{url('assets/vali/js/main.js')}}"></script>
 <!-- The javascript plugin to display page loading on top-->
+<script src="{{url('assets/vali/js/plugins/bootstrap-datepicker.min.js')}}"></script>
 <script src="{{url('assets/vali/js/plugins/pace.min.js')}}"></script>
 @stack('script')
 </body>

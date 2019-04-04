@@ -57,7 +57,7 @@
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('Remember Me') }}
-                                    </label>Login
+                                    </label>
                                 </div>
                             </div>
                         </div>
