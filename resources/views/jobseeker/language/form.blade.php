@@ -9,7 +9,7 @@
 <div class="col col-lg-2 col-md-2 col-sm-12 col-12">
     <div class="form-group {{ $errors->has('written') ? 'has-error' : ''}}">
         <label class="control-label">Written</label>
-        {!! Form::select('written',$quality,null, ['class' => 'form-control', 'id'=>'written','required' => true,'placeholder'=>"Select Written Skill"]) !!}
+        {!! Form::select('written',$quality,null, ['class' => 'form-control', 'id'=>'written','required' => true,'placeholder'=>"Skill"]) !!}
         {!! $errors->first('written', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -18,7 +18,7 @@
 <div class="col col-lg-2 col-md-2 col-sm-12 col-12">
     <div class="form-group {{ $errors->has('listening') ? 'has-error' : ''}}">
         <label class="control-label">Listening</label>
-        {!! Form::select('listening',$quality,null, ['class' => 'form-control', 'id'=>'listening','required' => true,'placeholder'=>"Select Listening Skill"]) !!}
+        {!! Form::select('listening',$quality,null, ['class' => 'form-control', 'id'=>'listening','required' => true,'placeholder'=>"SkillHelper"]) !!}
         {!! $errors->first('listening', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
@@ -27,7 +27,7 @@
 <div class="col col-lg-2 col-md-2 col-sm-12 col-12">
     <div class="form-group {{ $errors->has('spoken') ? 'has-error' : ''}}">
         <label class="control-label">Spoken</label>
-        {!! Form::select('spoken',$quality,null, ['class' => 'form-control', 'id'=>'spoken','required' => true,'placeholder'=>"Select Spoken Skill"]) !!}
+        {!! Form::select('spoken',$quality,null, ['class' => 'form-control', 'id'=>'spoken','required' => true,'placeholder'=>"Skill"]) !!}
         {!! $errors->first('spoken', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

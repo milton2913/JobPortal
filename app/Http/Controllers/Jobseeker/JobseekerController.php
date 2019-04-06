@@ -31,15 +31,14 @@ class JobseekerController extends Controller
     }
 
     public function resumeUpload(){
-        return view('jobseeker.resume.resume-upload');
+        $user = User::find($this->user_id);
+        return view('jobseeker.resume.resume-upload',compact('user'));
     }
 
     /*
      * Resume Upload
      */
     public function uploadResume(Request $request){
-
-
         $request->validate([
             'resume' => 'required|mimes:doc,docx'
         ]);
@@ -76,6 +75,15 @@ class JobseekerController extends Controller
         return redirect('jobseeker/resume-upload');
     }
 
+    public function videoResume(Request $request){
+        $request->validate([
+            'video_resume' => 'max:56535'
+        ]);
+        $pro = Profile::where('user_id',$this->user_id)->first();
+        $data['video_resume']=$request->input('video_resume');
+        $pro->update($data);
+        return redirect('jobseeker/resume-upload');
+    }
     public static function makeIdentity($ip){
         $time = time();
         $ipd=self::removeDot($ip);

@@ -65,6 +65,7 @@ Route::get('jobseeker/profile','Jobseeker\JobseekerController@profile');
 Route::get('jobseeker/resume/{id}','Jobseeker\JobseekerController@resume');
 Route::get('jobseeker/resume-upload','Jobseeker\JobseekerController@resumeUpload');
 Route::post('jobseeker/resume-upload','Jobseeker\JobseekerController@uploadResume');
+Route::post('jobseeker/video-resume','Jobseeker\JobseekerController@videoResume');
 
 
 

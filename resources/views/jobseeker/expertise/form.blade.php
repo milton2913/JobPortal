@@ -1,7 +1,7 @@
 <div class="col col-lg-4 col-md-4 col-sm-12 col-12">
     <div class="form-group {{ $errors->has('skill_id') ? 'has-error' : ''}}">
         <label class="control-label">skill</label>
-        {!! Form::select('skill_id',$skills,null, ['class' => 'form-control', 'id'=>'skill_id','required' => true,'placeholder'=>"Select Skill"]) !!}
+        {!! Form::select('skill_id',$skills,null, ['class' => 'form-control', 'id'=>'skill_id','required' => true,'placeholder'=>"Skill"]) !!}
         {!! $errors->first('skill_id', '<p class="help-block">:message</p>') !!}
     </div>
 </div>

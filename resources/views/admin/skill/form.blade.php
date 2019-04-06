@@ -1,11 +1,11 @@
 <div class="form-group col-md-4 {{ $errors->has('title') ? 'has-error' : ''}}">
     <label class="control-label">Skill Title</label>
-    {!! Form::text('title', null, ['class' => 'form-control', 'id'=>'title', 'required' => 'required','placeholder'=>'Skill Title']) !!}
+    {!! Form::text('title', null, ['class' => 'form-control', 'id'=>'title', 'required' => 'required','placeholder'=>'Skill']) !!}
     {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group col-md-4 {{ $errors->has('slug') ? 'has-error' : ''}}">
     <label class="control-label">Skill  slug/url</label>
-    {!! Form::text('slug', null, ['class' => 'form-control',  'id'=>'slug', 'required' => 'required','placeholder'=>'Skill slug']) !!}
+    {!! Form::text('slug', null, ['class' => 'form-control',  'id'=>'slug', 'required' => 'required','placeholder'=>'SkillHelper']) !!}
     {!! $errors->first('slug', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group  col-md-2 {{ $errors->has('is_active') ? 'has-error' : ''}}">

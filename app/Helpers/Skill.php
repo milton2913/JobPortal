@@ -129,7 +129,7 @@ return $rul;
     public static function experienceCalculator($start_date,$end_date,$is_current){
         $start_date = strtotime($start_date);
         if ($is_current==1 && $end_date=="Continue"){
-            $end_date = strtotime(date('Y-m-b'));
+            $end_date = strtotime(date('Y-m-d'));
         }else{
             $end_date = strtotime($end_date);
         }
