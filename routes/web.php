@@ -67,7 +67,7 @@ Route::get('jobseeker/resume-upload','Jobseeker\JobseekerController@resumeUpload
 Route::post('jobseeker/resume-upload','Jobseeker\JobseekerController@uploadResume');
 Route::post('jobseeker/video-resume','Jobseeker\JobseekerController@videoResume');
 
-
+Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 
 
 

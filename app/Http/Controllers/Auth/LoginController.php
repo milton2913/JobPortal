@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Socialite;
 use App\Helpers\Skill;
 class LoginController extends Controller
@@ -74,6 +75,7 @@ class LoginController extends Controller
             'avatar'=>$userInfo->avatar,
             'provider'=>$social,
             'is_status'=>'3',
+            'verified'=>1,
             'provider_id'=>$userInfo->id,
         ]);
         //finally log the user in
@@ -84,5 +86,36 @@ class LoginController extends Controller
         }
     }
 
+
+
+    protected function credentials(Request $request)
+    {
+        return [
+            'email'=>$request->{$this->username()},
+            'password'=>$request->password,
+            'verified'=>1
+
+        ];
+    }
+
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        $errors = [$this->username() => trans('auth.failed')];
+        // Load user from database
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            $errors = [$this->username() => trans('auth.email')];
+        }
+        if (!User::where('email', $request->email)->where('password', bcrypt($request->password))->first()) {
+            $errors = ['password' => trans('auth.password')];
+        }
+        if ($user && \Hash::check($request->password, $user->password) && $user->verified != 1) {
+            $errors = [$this->username() => trans('auth.verified')];
+        }
+        return redirect()->back()
+            ->withInput($request->only($this->username(), 'remember'))
+            ->withErrors($errors);
+    }
 
 }
