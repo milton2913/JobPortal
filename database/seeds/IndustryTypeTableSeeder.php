@@ -13,102 +13,141 @@ class IndustryTypeTableSeeder extends Seeder
     {
         $items = [
             [
-                'title' => 'Accounting/Auditing',
+                'title' => 'Agro based Industry',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
             ],
-            [
-                'title' => 'Administration',
+           [
+                'title' => 'Airline/ Travel/ Tourism',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
             ],
-            [
-                'title' => 'Advertising',
+           [
+                'title' => 'Architecture/ Engineering/ Construction',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
             ],
-            [
-                'title' => 'Aerospace and Defense',
+           [
+                'title' => 'Automobile/Industrial Machine',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
             ],
-            [
-                'title' => 'Agriculture/Forestry/Fishing',
+           [
+                'title' => 'Bank/ Non-Bank Fin. Institution',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Airlines/Aviation',
+            ],
+           [
+                'title' => 'Education',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Architecture',
+            ],
+           [
+                'title' => 'Electronics/ Consumer Durables',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Arts/Entertainment/and Media',
+            ],
+           [
+                'title' => 'Energy/ Power/ Fuel',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Aviation/Marine Refueling',
+            ],
+           [
+                'title' => 'Entertainment/ Recreation',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Banking',
+            ],
+           [
+                'title' => 'Fire, Safety & Protection',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Biotechnology',
+            ],
+           [
+                'title' => 'Food & Beverage Industry',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Catering/Food Services/Restaurants',
+            ],
+           [
+                'title' => 'Garments/Textile',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Community/Social Services/and Nonprofit',
+            ],
+           [
+                'title' => 'Govt./ Semi-Govt./ Autonomous',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Computer/Hardware',
+            ],
+           [
+                'title' => 'Hospital/ Diagnostic Center',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Computer/Software',
+            ],
+           [
+                'title' => 'Hotel/Restaurant',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Construction',
+            ],
+           [
+                'title' => 'Information Technology (IT)',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Construction/Civil Engineering',
+            ],
+           [
+                'title' => 'Logistics/ Transportation',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Consulting Services',
+            ],
+           [
+                'title' => 'Manufacturing (Heavy Industry)',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Contracts/Purchasing',
+            ],
+           [
+                'title' => 'Manufacturing (Light Industry)',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Customer Service',
+            ],
+           [
+                'title' => 'Media (Satellite/ Print/ Online)/ Advertising/ Event Mgt.',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Distributions and Logistics',
+            ],
+           [
+                'title' => 'NGO/Development',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Education, Training, and Library',
+            ],
+           [
+                'title' => 'Pharmaceuticals',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ],[
-                'title' => 'Employment Placement Agencies/Recruiting',
+            ],
+           [
+                'title' => 'Real Estate/ Development',
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ],
+           [
+                'title' => 'Security Service',
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ],
+           [
+                'title' => 'Telecommunication',
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ],
+           [
+                'title' => 'Wholesale/ Retail/ Export-Import',
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ],
+           [
+                'title' => 'Others',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
             ]
+
         ];
         DB::table('industry_types')->insert($items);
     }

@@ -19,6 +19,10 @@ class JobseekerController extends Controller
             return $next($request);
         });
     }
+
+    public function index(){
+        return view('jobseeker.dashboard');
+    }
     public function profile(){
         $resume = User::with('profile','address','training','education','reference','expertise','experience','certification','address')->find($this->user_id);
 

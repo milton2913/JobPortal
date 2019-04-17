@@ -29,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/profile/create';
+    //protected $redirectTo = '/profile/create';
     protected function redirectTo()
     {
         $url = Skill::checkUserStatus();

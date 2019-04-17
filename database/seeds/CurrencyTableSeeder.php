@@ -15,7 +15,7 @@ class CurrencyTableSeeder extends Seeder
             [
                 'title' => 'Bangladeshi Taka',
                 'currency_code' => 'BDT',
-                'currency_symbol' => '',
+                'currency_symbol' => '৳',
                 'country_id' => '19',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
@@ -23,7 +23,7 @@ class CurrencyTableSeeder extends Seeder
             [
                 'title' => 'USA Doller',
                 'currency_code' => 'USD',
-                'currency_symbol' => '',
+                'currency_symbol' => '$',
                 'country_id' => '226',
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),

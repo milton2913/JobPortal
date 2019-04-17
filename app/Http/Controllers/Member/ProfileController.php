@@ -6,6 +6,7 @@ use App\Models\Country;
 use App\Models\District;
 use App\Models\Division;
 use App\Models\Profile;
+use App\Models\Service;
 use App\Models\Upazila;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -49,6 +50,7 @@ class ProfileController extends Controller
             $userData = $request->getUserData();
             $profile = $request->only('gender', 'marital_status', 'religion', 'blood', 'father_name', 'mother_name', 'alternate_email', 'alternate_mobile','identity_type','identity_no');
             $profile['user_id'] =$user_id;
+            $profile['is_status'] =2;
 
 
             $profile['dob'] = $prof->getDateOfBirthAttribute($request->input('dob'));;
@@ -72,7 +74,6 @@ class ProfileController extends Controller
             $user->update($userData);
             Skill::profile($profile);
             //contact information add in same method
-
             $address['in_bangladesh'] = $request->input('present_address');
             $address['address_type'] = "Present";
             $address['country_id'] = $request->input('present_country_id');
@@ -96,6 +97,7 @@ class ProfileController extends Controller
                 $address['others'] = $request->input('permanentAddress');
                 $address['user_id'] = $user_id;
             }
+
             Skill::address($address);
 
             $url = Skill::checkUserStatus();
@@ -159,4 +161,38 @@ class ProfileController extends Controller
         return response()->json($cities);
     }
 
+
+
+    public function chooseService(){
+        $service = Skill::checkService();
+        if ($service==false){
+            $services = Service::all();
+            return view('member.choose-service',compact('services'));
+        }else{
+            $rul = Skill::dashboard($service);
+            return redirect($rul);
+        }
+    }
+
+    public function serviceStore(Request $request){
+
+        $user =Auth::user();
+        $services = $request->input('service_id');
+        $is_actives = $request->input('is_active');
+        $i=0;
+        $sv=array();
+        foreach ($services as $serv){
+            if($serv == $is_actives){
+                $is_active ='1';
+            }else{
+                $is_active = '0';
+            }
+            $sv[$i]=['service_id'=>$serv,'is_active'=>$is_active];
+            $i++;
+        }
+
+        $user->service()->attach($sv);
+        //$user->service()->sync($service,['is_active'=>'1']);
+        return redirect(Skill::checkUserStatus());
+    }
 }

@@ -8,6 +8,7 @@
 
 namespace App\Helpers;
 use App\Models\Address;
+use App\Models\Employer;
 use App\Models\Experience;
 use App\Models\Profile;
 use App\Models\User;
@@ -21,24 +22,23 @@ class Skill{
     //after profile create and after login check this function
     public static function checkUserStatus(){
 
-        if (auth()->user()->is_status == 3) {
+        if (auth()->user()->is_status == '3') {
             $rul = 'profile/create';
-        }elseif (auth()->user()->is_status==2){
+        }elseif (auth()->user()->is_status=='2'){
             $service = self::checkService();
             if ($service==false){
-                dd("Service Choice page");
+                $rul = "choose-service";
             }else{
                 $rul = self::dashboard($service);
             }
-
-        }elseif (auth()->user()->is_status==1){
+        }elseif (auth()->user()->is_status=='1'){
             $rul =  'profile done!';
         }elseif (auth()->user()->is_status==0){
             $rul = 'profile inactive!';
         }else{
             $rul = '/home';
         }
-return $rul;
+        return $rul;
     }
 
     //check user service if found any service then return default service
@@ -50,7 +50,7 @@ return $rul;
         if($service_user->count() >0 ){
             $current_service = $service->service()
                 ->wherePivot('user_id',Auth::id())
-                ->wherePivot('is_active',1)
+                ->wherePivot('is_active','1')
                 ->first();
         }else{
             $current_service = false;
@@ -61,15 +61,24 @@ return $rul;
     //redirect dashboard
 
     public static function dashboard($service){
-       // dd($service->id);
-
-        switch ($service->id){
+        switch ($service->role_id){
             case 1:
-                return 'employer/dashboard';
+                return 'admin/dashboard';
             case 2:
-                return 'profile/create';
+                return self::checkEmployerIfCreate();
+            case 3:
+                return 'jobseeker/dashboard';
             default:
                 return 'home';
+        }
+    }
+
+    public static function checkEmployerIfCreate(){
+        $employer = Employer::where('user_id',Auth::id())->first();
+        if ($employer==null){
+            return 'employer/employer-profile-add';
+        }else{
+            return 'employer/dashboard';
         }
     }
 

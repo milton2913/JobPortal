@@ -10,4 +10,8 @@ class IndustryType extends Model
     protected $table="industry_types";
     protected $fillable = ['title','slug','is_active'];
 
+    public function industry(){
+        return $this->hasMany('App\Models\Industry');
+    }
+
 }

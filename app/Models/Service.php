@@ -13,6 +13,6 @@ class Service extends Model
         return $this->hasOne('Models\Role');
     }
     public function user(){
-        return $this->belongsToMany('App\Models\User');
+        return $this->belongsToMany('App\Models\User')->withPivot('is_active');
     }
 }

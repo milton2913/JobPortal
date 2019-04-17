@@ -31,6 +31,10 @@ class CreateAlterUserTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('avatar');
+            $table->dropColumn('provider');
+            $table->dropColumn('provider_id');
+            $table->dropColumn('mobile');
+            $table->dropColumn('is_status');
         });
     }
 }

@@ -39,7 +39,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\CvObjective');
     }
     public function service(){
-        return $this->belongsToMany('App\Models\Service');
+        return $this->belongsToMany('App\Models\Service')->withPivot('is_active');
     }
 //jobseeker section model
     public function training(){
@@ -67,4 +67,5 @@ class User extends Authenticatable
     public function social(){
         return $this->hasMany('App\Models\Social');
     }
+
 }

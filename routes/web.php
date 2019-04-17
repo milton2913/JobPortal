@@ -22,7 +22,6 @@ Route::get('get-city-list','Member\ProfileController@getCityList');
 Route::get('get-thana-list','Member\ProfileController@getThanaList');
 
 
-Route::get('employer/dashboard','Employer\DashboardController@index')->name('employer.dashboard');
 Route::get('jobseeker/dashboard','Jobseeker\JobseekerController@index')->name('jobseeker.dashboard');
 
 
@@ -72,11 +71,16 @@ Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 
 
 
+Route::get('/choose-service', 'Member\ProfileController@chooseService');
+Route::post('choose-service/', 'Member\ProfileController@serviceStore')
+    ->name('choose.service.store');
 
 
 
-
-
+//employer section
+Route::get('employer/dashboard','Employer\EmployerController@index')->name('employer.dashboard');
+Route::get('employer/employer-profile-add','Employer\EmployerController@create')->name('employer.employer-profile-add');
+Route::get('employer/profile/store','Employer\EmployerController@store')->name('employer.profile.store');
 
 
 
