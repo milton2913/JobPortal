@@ -81,7 +81,10 @@ Route::post('choose-service/', 'Member\ProfileController@serviceStore')
 Route::get('employer/dashboard','Employer\EmployerController@index')->name('employer.dashboard');
 Route::get('employer/employer-profile-add','Employer\EmployerController@create')->name('employer.employer-profile-add');
 Route::get('employer/profile/store','Employer\EmployerController@store')->name('employer.profile.store');
-
+Route::get('filter-industry','Employer\EmployerController@filterIndustry');
+Route::get('get-division-list','Employer\EmployerController@getDivisionList');
+Route::get('get-district-list','Employer\EmployerController@getDistrictList');
+Route::get('get-upazila-list','Employer\EmployerController@getUpazilaList');
 
 
 

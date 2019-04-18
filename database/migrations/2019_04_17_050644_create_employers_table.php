@@ -33,7 +33,7 @@ class CreateEmployersTable extends Migration
             $table->text('address')->nullable();
             $table->text('address_bn')->nullable();
             $table->string('contact_phone',20);
-            $table->string('email',100);
+            $table->string('contact_email',100);
 //end of company address
 
             //industry types

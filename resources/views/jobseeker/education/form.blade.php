@@ -80,8 +80,6 @@ $country = isset($education->institute->country_id)?$education->institute->count
 <div class="form-group  is_mark {{ $errors->has('mark') ? 'has-error' : '' }}">
     {!! Form::label('mark','Mark',['class' => 'control-label']) !!}
             {!! Form::text('mark',null, ['class' => 'form-control ', 'id'=>'mark' ]) !!}
-
-
             {!! $errors->first('mark', '<p class="help-block">:message</p>') !!}
 </div>
 
