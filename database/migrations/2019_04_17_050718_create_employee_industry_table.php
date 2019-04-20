@@ -13,8 +13,12 @@ class CreateEmployeeIndustryTable extends Migration
      */
     public function up()
     {
-        Schema::create('employee_industry', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('employer_industry', function (Blueprint $table) {
+            $table->integer('employer_id')->unsigned();
+            $table->integer('industry_id')->unsigned();
+            $table->primary(['employer_id', 'industry_id']);
+            $table->foreign('employer_id')->references('id')->on('employers')->onDelete('cascade');
+            $table->foreign('industry_id')->references('id')->on('industries')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +30,6 @@ class CreateEmployeeIndustryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employee_industry');
+        Schema::dropIfExists('employer_industry');
     }
 }

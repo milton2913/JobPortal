@@ -17,8 +17,8 @@ class CreateEmployersTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('company_name',200);
-            $table->string('company_name_bn',200);
+            $table->string('company_name')->unique();
+            $table->string('company_name_bn',350);
 //company address
             $table->integer('country_id')->unsigned();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');

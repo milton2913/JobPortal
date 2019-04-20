@@ -22,7 +22,7 @@ class CreateProfilesTable extends Migration
             $table->enum('religion',['Islam','Christianity','Judaism','Hinduism','Buddhism','Other']);
             $table->enum('blood',['A+','A-','B+','B-','O+','O-','AB+','AB-']);
             $table->integer('country_id')->unsigned()->nullable();//using for nationality purpose
-            $table->date('date_of_birth');
+            $table->date('dob');
             $table->string('father_name',100);
             $table->string('mother_name',100);
             $table->enum('identity_type',['National ID','Brith Certificate','Passport'])->nullable();

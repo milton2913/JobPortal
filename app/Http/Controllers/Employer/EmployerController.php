@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers\Employer;
 
+use App\Http\Requests\EmployerRequest;
 use App\Models\Country;
 use App\Models\District;
 use App\Models\Division;
+use App\Models\Employer;
+use App\Models\EmployerContact;
 use App\Models\Industry;
 use App\Models\IndustryType;
 use App\Models\Upazila;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use DB;
+use Session;
 class EmployerController extends Controller
 {
     public function index(){
@@ -26,6 +30,26 @@ class EmployerController extends Controller
         $industries = Industry::where('is_active','1')->get();
 
         return view('employer.profile.create',compact('countries','divisions','districts','upazilas','industry_types','industries'));
+    }
+
+    public function store(EmployerRequest $request){
+
+        DB::beginTransaction();
+        try{
+            $data = $request->getData();
+            $employer = Employer::create($data);
+            $getContact = $request->getEmployerContact($employer);
+            EmployerContact::create($getContact);
+            $industries = $request->input('industry_id');
+            $employer->industry()->attach($industries);
+            DB::commit();
+            return redirect('employer/dashboard')->with('message', 'Employer profile successfully create!');
+        }catch (Exception $e) {
+            DB::rollback();
+            return back()->withInput()
+                ->withErrors(['message' => 'Unexpected error occurred while trying to process your request!']);
+        }
+
     }
 
     public function filterIndustry(Request $request){

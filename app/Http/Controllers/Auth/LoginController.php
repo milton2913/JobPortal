@@ -93,8 +93,7 @@ class LoginController extends Controller
         return [
             'email'=>$request->{$this->username()},
             'password'=>$request->password,
-            'verified'=>1
-
+            'verified'=>1,
         ];
     }
 

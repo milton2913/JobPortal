@@ -13,7 +13,7 @@ class CreateEmployeeContactsTable extends Migration
      */
     public function up()
     {
-        Schema::create('employee_contacts', function (Blueprint $table) {
+        Schema::create('employer_contacts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('employer_id')->unsigned();
             $table->foreign('employer_id')->references('id')->on('employers')->onDelete('cascade');
@@ -23,6 +23,7 @@ class CreateEmployeeContactsTable extends Migration
             $table->string('designation',100);
             $table->string('username',30)->unique();
             $table->string('password')->nullable();
+            $table->enum('is_active',[0,1])->default(1);//0 is inactive, 1 is active with suggestion
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ class CreateEmployeeContactsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employee_contacts');
+        Schema::dropIfExists('employer_contacts');
     }
 }

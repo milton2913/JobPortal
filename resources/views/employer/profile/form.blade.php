@@ -143,17 +143,17 @@
                 </div>
             </div>
             <div class="col-md-6 col-lg-6">
-                <div class="form-group {{ $errors->has('contact_person_mobile') ? 'has-error' : '' }}">
-                    {!! Form::label('contact_person_mobile',"Contact Person's Email *",['class' => 'control-label']) !!}
-                    {!! Form::text('contact_person_mobile',null, ['class' => 'form-control','placeholder'=>"Type Contact Person Mobile Number",'required'=>true]) !!}
-                    {!! $errors->first('contact_person_mobile', '<p class="help-block">:message</p>') !!}
+                <div class="form-group {{ $errors->has('contact_person_email') ? 'has-error' : '' }}">
+                    {!! Form::label('contact_person_email',"Contact Person's Email *",['class' => 'control-label']) !!}
+                    {!! Form::text('contact_person_email',null, ['class' => 'form-control','placeholder'=>"Type Contact Person Email Address",'required'=>true]) !!}
+                    {!! $errors->first('contact_person_email', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="col-md-6 col-lg-6">
-                <div class="form-group {{ $errors->has('contact_person_email') ? 'has-error' : '' }}">
-                    {!! Form::label('contact_person_email',"Contact Person's Mobile",['class' => 'control-label']) !!}
-                    {!! Form::text('contact_person_email',null, ['class' => 'form-control','placeholder'=>"Type Contact Person Email Address"]) !!}
-                    {!! $errors->first('contact_person_email', '<p class="help-block">:message</p>') !!}
+                <div class="form-group {{ $errors->has('contact_person_mobile') ? 'has-error' : '' }}">
+                    {!! Form::label('contact_person_mobile',"Contact Person's Mobile",['class' => 'control-label']) !!}
+                    {!! Form::text('contact_person_mobile',null, ['class' => 'form-control','placeholder'=>"Type Contact Person Mobile Number"]) !!}
+                    {!! $errors->first('contact_person_mobile', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
         </div>
@@ -197,18 +197,42 @@
 @endpush
 @push('script')
 <script type="text/javascript">
+
+
+    $(document).ready(function () {
+        var country_id = $('#country_id :selected').val();
+        if (country_id == 19) {
+            $('#select_state').show();
+        } else {
+            $('#select_state').hide();
+            $('#write_state').show();
+        }
+
+        // onload industry get
+        var industry_type_id = $('#industry_type_id :selected').val();
+        if(industry_type_id>0){
+            getIndustry(industry_type_id);
+        }
+    });
+
     $("#write_state").hide();
+
     $('#industry_type_id').on('change', function () {
         var industry_type_id = $(this).val();
-            $.ajax({
-                type: "GET",
-                url: "{{url('filter-industry')}}?industry_type_id=" + industry_type_id,
-                success: function (res) {
-                    $("#industry-list").empty();
-                    $("#industry-list").append(res);
-                }
-            });
+            getIndustry(industry_type_id);
     });
+
+    function getIndustry(industry_type_id){
+
+        $.ajax({
+            type: "GET",
+            url: "{{url('filter-industry')}}?industry_type_id=" + industry_type_id,
+            success: function (res) {
+                $("#industry-list").empty();
+                $("#industry-list").append(res);
+            }
+        });
+    }
 
     $('#country_id').change(function () {
         var country_id = $(this).val();
@@ -222,7 +246,7 @@
                     console.log(res);
                     if (res) {
                         $("#division_id").empty();
-                        $("#division_id").append('<option>Select</option>');
+                        $("#division_id").append('<option value="">Select</option>');
                         $.each(res, function (key, value) {
                             $("#division_id").append('<option value="' + key + '">' + value + '</option>');
                         });
@@ -238,6 +262,11 @@
             $("#write_state").show();
         }
     });
+
+
+
+
+
     $('#division_id').change(function () {
         var division_id = $(this).val();
         console.log(division_id);
@@ -248,7 +277,7 @@
                     console.log(res);
                     if (res) {
                         $("#district_id").empty();
-                        $("#district_id").append('<option>Select</option>');
+                        $("#district_id").append('<option value="">Select</option>');
                         $.each(res, function (key, value) {
                             $("#district_id").append('<option value="' + key + '">' + value + '</option>');
                         });
@@ -269,7 +298,7 @@
                 console.log(res);
                 if (res) {
                     $("#upazila_id").empty();
-                    $("#upazila_id").append('<option>Select</option>');
+                    $("#upazila_id").append('<option value="">Select</option>');
                     $.each(res, function (key, value) {
                         $("#upazila_id").append('<option value="' + key + '">' + value + '</option>');
                     });

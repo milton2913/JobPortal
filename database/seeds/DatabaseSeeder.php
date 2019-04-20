@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        /*
+
         $this->call(CountryTableSeeder::class);
         $this->call(DivisionTableSeeder::class);
         $this->call(DistrictTableSeeder::class);
@@ -40,8 +40,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(InstituteTableSeeder::class);
         //$user = factory(App\Models\User::class,5)->create();
-*/
-        //$this->call(IndustryTypeTableSeeder::class);
-        $this->call(IndustryTableSeeder::class);
+
+
     }
 }
