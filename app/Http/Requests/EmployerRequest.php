@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Helpers\Skill;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
-
+use File;
 class EmployerRequest extends FormRequest
 {
     /**
@@ -24,7 +25,7 @@ class EmployerRequest extends FormRequest
      */
     public function rules()
     {
-        $id = $this->route('employer');
+        $id = $this->route('id');
         $rules = [
             'company_name' => 'required|max:191|unique:employers,company_name,'.$id,
             'company_name_bn' => 'required|max:350',
@@ -36,7 +37,6 @@ class EmployerRequest extends FormRequest
             'contact_person_mobile' => 'max:20',
             'contact_person_email' => 'max:100',
             'contact_person_designation' => 'max:100',
-
         ];
         if ($this->input('country_id')==19){
             $rules['division_id'] = 'required';
@@ -66,6 +66,10 @@ class EmployerRequest extends FormRequest
             $data['district_id'] = $this->input(['district_id']);
             $data['upazila_id'] = $this->input(['upazila_id']);
         }
+
+
+
+
         $data['user_id']=Auth::id();
         return $data;
     }

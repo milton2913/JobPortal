@@ -191,6 +191,17 @@
         </li>
 
 
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i
+                        class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Employer</span><i
+                        class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+                <li><a class="treeview-item" href="{{url('employer/dashboard')}}"><i class="icon fa fa-circle-o"></i>Dashboard</a>
+                <li><a class="treeview-item" href="{{url('employer/employer-profile-edit')}}"><i class="icon fa fa-circle-o"></i>Profile Edit</a>
+                </li>
+            </ul>
+        </li>
+
+
     </ul>
 </aside>
 <main class="app-content">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Employer;
 
+use App\Helpers\Skill;
 use App\Http\Requests\EmployerRequest;
 use App\Models\Country;
 use App\Models\District;
@@ -14,9 +15,23 @@ use App\Models\Upazila;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use Illuminate\Support\Facades\Auth;
 use Session;
+use File;
 class EmployerController extends Controller
 {
+    protected $user_id;
+    protected $employer;
+    public function __construct()
+    {
+
+        $this->middleware(function ($request, $next) {
+            $this->user_id= Auth::id();
+            $this->employer = Employer::where('user_id',$this->user_id)->first();
+            return $next($request);
+        });
+    }
+
     public function index(){
         return view('employer.dashboard');
     }
@@ -28,7 +43,6 @@ class EmployerController extends Controller
         $upazilas = Upazila::pluck('name','id');
         $industry_types = IndustryType::where('is_active','1')->pluck('title','id');
         $industries = Industry::where('is_active','1')->get();
-
         return view('employer.profile.create',compact('countries','divisions','districts','upazilas','industry_types','industries'));
     }
 
@@ -37,6 +51,13 @@ class EmployerController extends Controller
         DB::beginTransaction();
         try{
             $data = $request->getData();
+        if ($request->hasFile('company_logo')) {
+            $uploadPath = Skill::makeFilePath("assets/uploads/company-logo");
+            $extension = $request->file('company_logo')->getClientOriginalExtension();
+            $fileName = str_slug($request->input('company_name')).date('Y-m-d').'.' . $extension;
+            $request->file('company_logo')->move($uploadPath, $fileName);
+            $data['company_logo'] = $uploadPath.'/'.$fileName;
+        }
             $employer = Employer::create($data);
             $getContact = $request->getEmployerContact($employer);
             EmployerContact::create($getContact);
@@ -52,14 +73,79 @@ class EmployerController extends Controller
 
     }
 
-    public function filterIndustry(Request $request){
-        if ($request->industry_type_id){
-            $industries = Industry::where('is_active','1')->where('industry_type_id',$request->industry_type_id)->get();
-        }else{
-            $industries = Industry::where('is_active','1')->get();
-        }
+    public function edit(){
+        $employer =$this->employer;
+        $countries = Country::pluck('name','id');
+        $divisions = Division::pluck('name','id');
+        $districts = District::pluck('name','id');
+        $upazilas = Upazila::pluck('name','id');
+        $industry_types = IndustryType::where('is_active','1')->pluck('title','id');
+        $industries = Industry::where('is_active','1')->where('industry_type_id',$employer->industry_type_id)->get();
+        $selected_industry = $employer->industry()->pluck('industry_id')->toArray();
+       return view('employer.profile.edit',compact('employer','countries','divisions','districts','upazilas','industry_types','industries','selected_industry'));
+    }
 
-        $data = view('employer.profile.industry',compact('industries'));
+    public function update(EmployerRequest $request){
+        $employer = $this->employer;
+        //DB::beginTransaction();
+        try{
+            $data = $request->getData();
+            if ($request->hasFile('company_logo')) {
+                //$uploadPath = public_path('/assets/uploads/avatar');
+                $uploadPath = Skill::makeFilePath("assets/uploads/company-logo");
+                $extension = $request->file('company_logo')->getClientOriginalExtension();
+                $fileName = str_slug($request->input('company_name')).date('Y-m-d').'.' . $extension;
+                $request->file('company_logo')->move($uploadPath, $fileName);
+                $data['company_logo'] = $uploadPath.'/'.$fileName;
+                if ($request->company_logo != null) {
+                    $existingPath = $employer->company_logo;
+                    if (file_exists( $existingPath)) {
+                        unlink($existingPath);
+                    }
+                }
+            }
+
+            $employer->update($data);
+            $industries = $request->input('industry_id');
+            $employer->industry()->sync($industries);
+           // DB::commit();
+            return redirect('employer/dashboard')->with('message', 'Employer profile successfully updated!');
+        }catch (Exception $e) {
+           // DB::rollback();
+            return back()->withInput()
+                ->withErrors(['message' => 'Unexpected error occurred while trying to process your request!']);
+        }
+    }
+
+
+
+
+
+
+    public function filterIndustry(Request $request){
+        $employer =$this->employer;
+    if ($request->industry_type_id){
+        $industries = Industry::where('is_active','1')->where('industry_type_id',$request->industry_type_id)->get();
+    }else{
+        $industries = Industry::where('is_active','1')->get();
+    }
+
+        //$industries = Industry::where('is_active','1')->get();
+
+        if ($employer!=null) {
+            $selected_industry = $employer->industry()->pluck('industry_id')->toArray();
+        }else{
+            $selected_industry = array();
+        }
+        $present_selected=array();
+        $present_selected = explode(",",$request->industry);
+
+        $selected_industry=array_merge($present_selected,$selected_industry);
+      //return $selected_industry;
+
+
+        $data = view('employer.profile.industry',compact('industries','selected_industry'));
+
         return $data;
             //return response()->json(['options'=>$data]);
     }

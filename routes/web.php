@@ -81,6 +81,10 @@ Route::post('choose-service/', 'Member\ProfileController@serviceStore')
 Route::get('employer/dashboard','Employer\EmployerController@index')->name('employer.dashboard');
 Route::get('employer/employer-profile-add','Employer\EmployerController@create')->name('employer.employer-profile-add');
 Route::post('employer/profile/store','Employer\EmployerController@store')->name('employer.profile.store');
+Route::get('employer/employer-profile-edit','Employer\EmployerController@edit')->name('employer.employer-profile-edit');
+Route::put('employer/profile/update/{id}','Employer\EmployerController@update')->name('employer.profile.update');
+
+
 Route::get('filter-industry','Employer\EmployerController@filterIndustry');
 Route::get('get-division-list','Employer\EmployerController@getDivisionList');
 Route::get('get-district-list','Employer\EmployerController@getDistrictList');
