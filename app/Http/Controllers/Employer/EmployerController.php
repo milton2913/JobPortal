@@ -43,7 +43,9 @@ class EmployerController extends Controller
         $upazilas = Upazila::pluck('name','id');
         $industry_types = IndustryType::where('is_active','1')->pluck('title','id');
         $industries = Industry::where('is_active','1')->get();
-        return view('employer.profile.create',compact('countries','divisions','districts','upazilas','industry_types','industries'));
+        $selected_industry2 = array();
+        $contacts = array();
+        return view('employer.profile.create',compact('countries','divisions','districts','upazilas','industry_types','industries','selected_industry2','contacts'));
     }
 
     public function store(EmployerRequest $request){
@@ -79,14 +81,18 @@ class EmployerController extends Controller
         $divisions = Division::pluck('name','id');
         $districts = District::pluck('name','id');
         $upazilas = Upazila::pluck('name','id');
+        $contacts = EmployerContact::pluck('name','id');
         $industry_types = IndustryType::where('is_active','1')->pluck('title','id');
         $industries = Industry::where('is_active','1')->where('industry_type_id',$employer->industry_type_id)->get();
         $selected_industry = $employer->industry()->pluck('industry_id')->toArray();
-       return view('employer.profile.edit',compact('employer','countries','divisions','districts','upazilas','industry_types','industries','selected_industry'));
+        $selected_industry2 = $employer->industry()->get();
+       return view('employer.profile.edit',compact('employer','countries','divisions','districts','upazilas','industry_types','industries','selected_industry','selected_industry2','contacts'));
     }
 
     public function update(EmployerRequest $request){
+
         $employer = $this->employer;
+
         //DB::beginTransaction();
         try{
             $data = $request->getData();
@@ -134,19 +140,14 @@ class EmployerController extends Controller
 
         if ($employer!=null) {
             $selected_industry = $employer->industry()->pluck('industry_id')->toArray();
+            $selected_industry2 = array();
         }else{
             $selected_industry = array();
+            $selected_industry2 = array();
         }
-        $present_selected=array();
-        $present_selected = explode(",",$request->industry);
+        $data = view('employer.profile.industry',compact('selected_industry2','industries','selected_industry'));
 
-        $selected_industry=array_merge($present_selected,$selected_industry);
-      //return $selected_industry;
-
-
-        $data = view('employer.profile.industry',compact('industries','selected_industry'));
-
-        return $data;
+return $data;
             //return response()->json(['options'=>$data]);
     }
     public function getDivisionList(Request $request)
@@ -164,5 +165,10 @@ class EmployerController extends Controller
     {
         $upazilas  = Upazila::where('district_id',$request->district_id)->pluck('name','id');
         return response()->json($upazilas);
+    }
+
+    public function getEmployerContact(Request $request){
+        $contact  = EmployerContact::where('employer_id',$this->employer->id)->find($request->employer_contact_id);
+        return response()->json($contact);
     }
 }

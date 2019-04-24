@@ -81,6 +81,11 @@ class Skill{
             return 'employer/dashboard';
         }
     }
+//get employer id throw user id
+public static function getEmployerId($user_id){
+    $employer = Employer::where('user_id',$user_id)->first();
+    return $employer->id;
+}
 
     //check jobs seeker CV status
     public static function checkCvInfo(){

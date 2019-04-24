@@ -89,6 +89,16 @@
         <div class="row" id="industry-list">
             @include('employer.profile.industry')
         </div>
+        <div class="row" style="margin: 10px 0px">
+            <div class="col-md-12" id="inList">
+@if($selected_industry2)
+                    @foreach($selected_industry2 as $si)
+
+                        <span class='alert alert-dismissible alert-success' id="new{{$si->pivot->industry_id}}"><input type='hidden' name='industry_id[]' value="{{$si->pivot->industry_id}}"><button class='close' cl="{{$si->pivot->industry_id}}" type='button' data-dismiss='alert'>×</button>{{$si->title}}</span>
+                        @endforeach
+    @endif
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-12 col-lg-12">
@@ -128,31 +138,40 @@
             </div>
         </div>
         <div class="row">
+            @if(count($contacts)>0)
+            <div class="col-md-12 col-lg-12">
+                <div class="form-group {{ $errors->has('employer_contact_id') ? 'has-error' : ''}}">
+                    {!! Form::select('employer_contact_id',$contacts,null, ['class' => 'form-control', 'id'=>'employer_contact_id','required' => false]) !!}
+                    {!! $errors->first('employer_contact_id', '<p class="help-block">:message</p>') !!}
+                </div>
+            </div>
+            @endif
+
             <div class="col-md-6 col-lg-6">
                 <div class="form-group {{ $errors->has('contact_person_name') ? 'has-error' : '' }}">
                     {!! Form::label('contact_person_name',"Contact Person's Name *",['class' => 'control-label']) !!}
-                    {!! Form::text('contact_person_name',null, ['class' => 'form-control','placeholder'=>"Type Contact Person Name",'required'=>true]) !!}
+                    {!! Form::text('contact_person_name',null, ['class' => 'form-control','placeholder'=>"Type Contact Person Name",'required'=>true, count($contacts)>0?"disabled":""]) !!}
                     {!! $errors->first('contact_person_name', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="col-md-6 col-lg-6">
                 <div class="form-group {{ $errors->has('contact_person_designation') ? 'has-error' : '' }}">
                     {!! Form::label('contact_person_designation',"Contact Person's Designation *",['class' => 'control-label']) !!}
-                    {!! Form::text('contact_person_designation',null, ['class' => 'form-control','placeholder'=>"Type Contact Person Designation",'required'=>true]) !!}
+                    {!! Form::text('contact_person_designation',null, ['class' => 'form-control','placeholder'=>"Type Contact Person Designation",'required'=>true,count($contacts)>0?"disabled":""]) !!}
                     {!! $errors->first('contact_person_designation', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="col-md-6 col-lg-6">
                 <div class="form-group {{ $errors->has('contact_person_email') ? 'has-error' : '' }}">
                     {!! Form::label('contact_person_email',"Contact Person's Email *",['class' => 'control-label']) !!}
-                    {!! Form::text('contact_person_email',null, ['class' => 'form-control','placeholder'=>"Type Contact Person Email Address",'required'=>true]) !!}
+                    {!! Form::text('contact_person_email',null, ['class' => 'form-control','placeholder'=>"Type Contact Person Email Address",'required'=>true,count($contacts)>0?"disabled":""]) !!}
                     {!! $errors->first('contact_person_email', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
             <div class="col-md-6 col-lg-6">
                 <div class="form-group {{ $errors->has('contact_person_mobile') ? 'has-error' : '' }}">
                     {!! Form::label('contact_person_mobile',"Contact Person's Mobile",['class' => 'control-label']) !!}
-                    {!! Form::text('contact_person_mobile',null, ['class' => 'form-control','placeholder'=>"Type Contact Person Mobile Number"]) !!}
+                    {!! Form::text('contact_person_mobile',null, ['class' => 'form-control','placeholder'=>"Type Contact Person Mobile Number",count($contacts)>0?"disabled":""]) !!}
                     {!! $errors->first('contact_person_mobile', '<p class="help-block">:message</p>') !!}
                 </div>
             </div>
@@ -244,12 +263,23 @@
         }
         .popover-body{max-width: 200px}
         .popover-body img{width: 100%}
+        #inList span{ padding: 1px; margin: 3px;float: left; padding-right: 20px}
+        .alert-dismissible .close{
+            top: 4px;
+            right: 0px;
+            padding: 0px;
+            z-index: 2;
+            background: #707070;
+            border-radius: 50%;
+            height: 16px;
+            width: 16px;
+            font-size: 12px;
+            color: white;
+        }
     </style>
 @endpush
 @push('script')
 <script type="text/javascript">
-
-
     $(document).ready(function () {
         var country_id = $('#country_id :selected').val();
         if (country_id == 19) {
@@ -258,40 +288,73 @@
             $('#select_state').hide();
             $('#write_state').show();
         }
-
         // onload industry get
         var industry_type_id = $('#industry_type_id :selected').val();
         if(industry_type_id>0){
             getIndustry(industry_type_id);
         }
+        var industryIds = $("#industry-list input:checkbox:checked").map(function(){
+            return $(this).val();
+        }).get();
+/*
+        if (industryIds.length>0){
+            for (var i=0; i<industryIds.length; i++){
+                var industryName = $('#business'+industryIds[i]).text()
+                $("#inList").append("<span class='alert alert-dismissible alert-success' id='new"+industryIds[i]+"'><input type='hidden' name='industry_id[]' value="+industryIds[i]+"><button class='close' cl='"+industryIds[i]+"' type='button' data-dismiss='alert'>×</button>"+industryName+"</span>");
+            }
+        }
+*/
     });
+    $(document).on('click', '.industry', function(){
+        var bid = $(this).attr("bid");
+        if($(this). prop("checked") == true){
+            var industryName = $('#business'+bid).text()
+            $("#inList").append("<span class='alert alert-dismissible alert-success' id='new"+bid+"'><input type='hidden' name='industry_id[]' value="+bid+"><button class='close' cl='"+bid+"' type='button' data-dismiss='alert'>×</button>"+industryName+"</span>");
 
-    $("#write_state").hide();
+        }else {
+            $("#new"+bid).remove();
+        }
+    });
+    $(document).on('click', '.close', function(){
+        var bid = $(this).attr("cl");
+        if($("#"+bid).length){
+            document.getElementById(bid).checked = false;
+        }
+    });
 
     $('#industry_type_id').on('change', function (event) {
         event.preventDefault();
         var industry_type_id = $(this).val();
-        //$('.industry:checked').val();
-        var industryIds = $("#industry-list input:checkbox:checked").map(function(){
-            return $(this).val();
-        }).get();
-
-        //console.log(industryIds);
-            getIndustry(industry_type_id,industryIds);
+            getIndustry(industry_type_id);
     });
 
-    function getIndustry(industry_type_id,industry){
+    function getIndustry(industry_type_id){
         $.ajax({
             type: "GET",
-            url: "{{url('filter-industry')}}?industry_type_id=" + industry_type_id+"&industry=" + industry,
+            url: "{{url('filter-industry')}}?industry_type_id=" + industry_type_id,
             success: function (res) {
-                console.log(res);
                 $("#industry-list").empty();
                 $("#industry-list").append(res);
             }
         });
     }
+    $('#employer_contact_id').on('change', function () {
+        var employer_contact_id = $(this).val();
+        $.ajax({
+            type: "GET",
+            url: "{{url('get-employer-contact')}}?employer_contact_id=" + employer_contact_id,
+            success: function (res) {
+                //set as  present address value in permanent address
+                $('#contact_person_name').val(res['name']);
+                $('#contact_person_email').val(res['email']);
+                $('#contact_person_designation').val(res['designation']);
+                $('#contact_person_mobile').val(res['mobile']);
+               // console.log();
+            }
+        });
+    });
 
+    $("#write_state").hide();
     $('#country_id').change(function () {
         var country_id = $(this).val();
         if (country_id==19){
@@ -308,10 +371,8 @@
                         $.each(res, function (key, value) {
                             $("#division_id").append('<option value="' + key + '">' + value + '</option>');
                         });
-                        //custom
                         $("#district_id").empty();
                         $("#upazila_id").empty();
-                        //custom
                     }
                 }
             });
@@ -320,11 +381,6 @@
             $("#write_state").show();
         }
     });
-
-
-
-
-
     $('#division_id').change(function () {
         var division_id = $(this).val();
         console.log(division_id);
@@ -339,9 +395,7 @@
                         $.each(res, function (key, value) {
                             $("#district_id").append('<option value="' + key + '">' + value + '</option>');
                         });
-                        //custom
                         $("#upazila_id").empty();
-                        //custom
                     }
                 }
             });
@@ -364,7 +418,6 @@
             }
         });
     });
-
     $(document).on('click', '#close-preview', function(){
         $('.image-preview').popover('hide');
         // Hover befor close the preview
@@ -377,7 +430,6 @@
             }
         );
     });
-
     $(function() {
         // Create the close button
         var closebtn = $('<button/>', {
@@ -424,5 +476,4 @@
         });
     });
 </script>
-
 @endpush

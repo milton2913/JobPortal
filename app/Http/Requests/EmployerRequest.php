@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use App\Helpers\Skill;
+use App\Models\Division;
+use App\Models\EmployerContact;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use File;
@@ -43,7 +45,7 @@ class EmployerRequest extends FormRequest
             $rules['district_id'] = 'required';
             $rules['upazila_id'] = 'required';
         }else{
-            $rules['state'] = 'required';
+            $rules['state'] = 'required|max:100';
             $rules['city'] = 'required';
         }
         return $rules;
@@ -60,16 +62,19 @@ class EmployerRequest extends FormRequest
     }
 
     public function getData(){
-        $data =  $this->only(['company_name','company_name_bn','country_id','address','address_bn','contact_phone','contact_email','industry_type_id','description','trade_license_no','rl_no','website_url','contact_person_name','contact_person_designation','contact_person_mobile','contact_person_email']);
+        $data =  $this->only(['company_name','company_name_bn','country_id','address','address_bn','contact_phone','contact_email','industry_type_id','description','trade_license_no','rl_no','website_url','contact_person_name','contact_person_designation','contact_person_mobile','contact_person_email','state','city']);
         if ($this->input('country_id')==19){
             $data['division_id'] = $this->input(['division_id']);
             $data['district_id'] = $this->input(['district_id']);
             $data['upazila_id'] = $this->input(['upazila_id']);
         }
-
-
-
-
+        if ($this->input(['employer_contact_id'])!=null && $this->input(['employer_contact_id'])>0){
+            $contact = EmployerContact::find($this->input(['employer_contact_id']));
+            $data['contact_person_name']=$contact->name;
+            $data['contact_person_email']=$contact->email;
+            $data['contact_person_designation']=$contact->designation;
+            $data['contact_person_mobile']=$contact->mobile;
+        }
         $data['user_id']=Auth::id();
         return $data;
     }
@@ -81,4 +86,5 @@ class EmployerRequest extends FormRequest
         $data['employer_id']= $employer->id;
         return $data;
     }
+
 }

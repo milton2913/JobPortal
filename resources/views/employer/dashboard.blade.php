@@ -1,6 +1,15 @@
 @extends('layouts.master')
 
 @section('content')
+    @if(Session::has('message'))
+        <div class="alert alert-success">
+            <i class="far fa-check-circle"></i>
+            {!! session('message') !!}
+            <button type="button" class="close" data-dismiss="alert" aria-label="close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <div class="row">
         <div class="col-md-6 col-lg-3">
             <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>

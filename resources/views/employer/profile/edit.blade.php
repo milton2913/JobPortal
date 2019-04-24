@@ -7,7 +7,7 @@
 
             {!! Form::model($employer, [
                             'method' => 'PUT',
-                            'route' => ['employer.profile.update',29],
+                            'route' => ['employer.profile.update',$employer->id],
                             'class' => 'form-horizontal',
                             'files' => true,
 
