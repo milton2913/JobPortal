@@ -51,6 +51,7 @@ class ExperienceController extends Controller
     public function store(ExperienceRequest $request)
     {
         $data = $request->getData();
+
         $experience = Experience::create($data);
         $skill_ids = $request->input('skill_id');
 

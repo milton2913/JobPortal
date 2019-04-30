@@ -6,7 +6,7 @@
                 <table class="table table-bordered" id="data-table">
                     <thead>
                     <tr>
-                        <th>Title</th>
+                        <th>Company Name</th>
                         <th>Designation</th>
                         <th>Department</th>
                         <th>Year of experience ({{Skill::totalExperience(\Illuminate\Support\Facades\Auth::id())}})</th>
@@ -17,7 +17,7 @@
                     <tbody>
                     @foreach($experiences as $item)
                         <tr>
-                            <td>{{$item->title}}</td>
+                            <td>{{$item->company_name}}</td>
                             <td>{{$item->designation}}</td>
                             <td>{{$item->department}}</td>
                             <td>{{Skill::experienceCalculator($item->start_date,$item->end_date,$item->is_current)}}</td>

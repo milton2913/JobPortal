@@ -65,5 +65,8 @@ class Degree extends Model
         return $this->belongsTo('App\Models\EducationLevel');
     }
 
-
+    //select degree
+    public function employment(){
+        return $this->belongsToMany('App\Models\Employment');
+    }
 }

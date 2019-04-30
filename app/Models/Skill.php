@@ -16,4 +16,8 @@ class Skill extends Model
     public function expertise(){
         return $this->hasMany('App\Models\Expertise');
     }
+    //select skill
+    public function employment(){
+        return $this->belongsToMany('App\Models\Employment');
+    }
 }

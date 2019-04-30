@@ -39,8 +39,14 @@ class DatabaseSeeder extends Seeder
         $this->call(CurrencyTableSeeder::class);
 
         $this->call(InstituteTableSeeder::class);
-        //$user = factory(App\Models\User::class,5)->create();
 
+        //$user = factory(App\Models\User::class,5)->create();
+//New job post required seeder table
+
+        $this->call(JobTypeTableSeeder::class);
+        $this->call(ExpertStatusTableSeeder::class);
+        $this->call(CompensationTableSeeder::class);
+        $this->call(EmploymentCategorySeederTable::class);//basically it's a job category
 
     }
 }

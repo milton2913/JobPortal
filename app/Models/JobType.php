@@ -4,12 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class JobLevel extends Model
+class JobType extends Model
 {
-    protected $table="job_levels";
-    protected $fillable = ['title','slug','is_active'];
-
-    //select job level
+    protected $fillable=['title','is_active'];
+    //select job type to employment
     public function employment(){
         return $this->belongsToMany('App\Models\Employment');
     }

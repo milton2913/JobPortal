@@ -1,8 +1,8 @@
 <div class="col col-lg-6 col-md-6 col-sm-12 col-12">
-    <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
-        {!! Form::label('title','Experience Title',['class' => 'control-label']) !!}
-        {!! Form::text('title',null, ['class' => 'form-control ', 'required'=>true ]) !!}
-        {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
+    <div class="form-group {{ $errors->has('company_name') ? 'has-error' : '' }}">
+        {!! Form::label('company_name','Company Name',['class' => 'control-label']) !!}
+        {!! Form::text('company_name',null, ['class' => 'form-control ', 'required'=>true ]) !!}
+        {!! $errors->first('company_name', '<p class="help-block">:message</p>') !!}
     </div>
 </div>
 
@@ -56,7 +56,7 @@
         <div class="form-group  {{ $errors->has('is_current') ? 'has-error' : '' }}">
             <div class="checkbox">
                 <label for='is_current'>
-                    {!! Form::checkbox('is_current','1', optional($experience)?optional($experience)->is_current=='0'?true:false:false, ['class' => 'required','id'=>'is_current','onclick'=>'isCurrent(this)']) !!}
+                    {!! Form::checkbox('is_current','1', optional($experience)?optional($experience)->is_current=='0'?false:true:false, ['class' => 'required','id'=>'is_current','onclick'=>'isCurrent(this)']) !!}
                     Is current
                 </label>
             </div>
@@ -102,7 +102,7 @@
             $('#skill_id').select2({
                 tags: true,
                 tokenSeparators: [","],
-                maximumSelectionLength: 5
+                maximumSelectionLength: 10
             });
         });
 

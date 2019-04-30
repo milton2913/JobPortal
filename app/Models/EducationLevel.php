@@ -63,5 +63,8 @@ class EducationLevel extends Model
         return $this->hasOne('App\Models\Degree');
     }
 
-
+    //select education level
+    public function employment(){
+        return $this->belongsToMany('App\Models\Employment');
+    }
 }

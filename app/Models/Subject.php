@@ -13,4 +13,9 @@ class Subject extends Model
     {
         return $this->hasOne('App\Models\Education');
     }
+
+    //select subject
+    public function employment(){
+        return $this->belongsToMany('App\Models\Employment');
+    }
 }

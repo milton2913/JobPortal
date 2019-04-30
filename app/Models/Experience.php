@@ -8,7 +8,7 @@ class Experience extends Model
 {
     protected $table="experiences";
 
-    protected $fillable = ['title','company_name','company_business','designation','department','is_current',"start_date","end_date",'location','responsibility',"user_id"];
+    protected $fillable = ['company_name','company_business','designation','department','is_current',"start_date","end_date",'location','responsibility',"user_id"];
 
     public function user()
     {

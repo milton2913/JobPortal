@@ -15,5 +15,8 @@ class Institute extends Model
     public function education(){
         return $this->hasOne('App\Models\Education');
     }
-
+    //select institute
+    public function employment(){
+        return $this->belongsToMany('App\Models\Employment');
+    }
 }

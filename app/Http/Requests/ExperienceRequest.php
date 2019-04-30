@@ -25,7 +25,7 @@ class ExperienceRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'title'=>'required|max:250',
+            'company_name'=>'required|max:250',
             'company_business'=>'required|max:250',
             'designation'=>'required|max:100',
             'department'=>'nullable|max:100',
@@ -45,9 +45,10 @@ class ExperienceRequest extends FormRequest
     }
     public function getData()
     {
-        $data = $this->only(['title', 'company_business', 'designation', 'department', 'start_date', 'end_date','location','responsibility']);
+        $data = $this->only(['company_name', 'company_business', 'designation', 'department', 'start_date', 'end_date','location','responsibility']);
         if ($this->input('is_current')) {
             $data['is_current'] = $this->input('is_current');
+            $data['end_date']="Continue";
         }
         $data['user_id']=Auth::id();
         return $data;

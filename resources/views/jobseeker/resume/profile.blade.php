@@ -157,9 +157,9 @@
     <td>{{$education->institute->country->name}}</td>
     <td>
         @if($education->mark || $education->scale)
-            {{($education->mark)?$education->mark:$education->scale}}
+            {{($education->mark)?$education->mark:($education->cgpa."out of ".$education->scale)}}
             @else
-        {{$education->resultType}}
+                {{$education->resultType->name}}
             @endif
 
     </td>

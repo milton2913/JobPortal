@@ -109,7 +109,7 @@ public static function getEmployerId($user_id){
         $http   = 'http';
         $pos = strpos($avatarUrl, $http);
         if ($pos === false) {
-        $url = url('assets/uploads/avatar/'.auth()->user()->avatar);
+        $url = url(auth()->user()->avatar);
         } else {
         $url = auth()->user()->avatar;
         }
@@ -159,9 +159,8 @@ public static function getEmployerId($user_id){
         }
         return $years." year, ". $months. ' month, '. ($end_date - $start_date) / (60*60*24). ' days';
     }
-
+//return total experience year month and day
     public static function totalExperience($id){
-
         $experiences = Experience::where('user_id',$id)->get();
         $months = 0;
         $years = 0;
@@ -169,11 +168,10 @@ public static function getEmployerId($user_id){
         foreach ($experiences as $experience){
             $start_date = strtotime($experience->start_date);
             if ($experience->is_current==1 && $experience->end_date=="Continue"){
-                $end_date = strtotime(date('Y-m-b'))+$days*60*60*24;
+                $end_date = strtotime(date('Y-m-d'))+$days*60*60*24;
             }else{
                 $end_date = strtotime($experience->end_date)+$days*60*60*24;
             }
-
             while (strtotime('+1 MONTH', $start_date) < $end_date) {
                 $months++;
                 $start_date = strtotime('+1 MONTH', $start_date);
@@ -187,7 +185,7 @@ public static function getEmployerId($user_id){
         }
         return $years." year, ". $months. ' month, '. $days . ' days';
     }
-
+//create file directory
     public static function makeFilePath($path){
         $year_path = $path.'/'.date('Y');
         if (File::exists($year_path)) {
@@ -203,10 +201,16 @@ public static function getEmployerId($user_id){
             File::makeDirectory($month_path);
             $uploadPath = $month_path;
         }
-
         return $uploadPath;
     }
 
-
-
+    //return username or name
+public static function getUsername(){
+    $name = Auth::user()->name;
+    return $name;
+}
+    public static function getEmail(){
+        $email = Auth::user()->email?Auth::user()->email:Auth::user()->profile->alternate_email;
+        return $email;
+    }
 }
